@@ -1,4 +1,5 @@
 import { Reveal } from './reveal'
+import { WindowPanel } from './window-panel'
 
 const ITEMS = [
   {
@@ -39,9 +40,9 @@ const ITEMS = [
   },
 ]
 
-// After nasu-ougiya.com: a vertical section title, then full-screen photo
-// panels that pin in place while the next one slides up over them, each with
-// a bold vertical name, vertical copy and a vertical "details" link.
+// After nasu-ougiya.com: a vertical section title, then full-screen windows
+// that scroll by while the photo and text inside stay still on screen, each
+// with a bold vertical name, vertical copy and a vertical "details" link.
 export function SignatureSection() {
   return (
     <section aria-labelledby="signature-heading">
@@ -58,7 +59,7 @@ export function SignatureSection() {
       </div>
 
       {ITEMS.map((item) => (
-        <div key={item.name} className="sticky top-0 h-svh overflow-hidden">
+        <WindowPanel key={item.name}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={item.image} alt={item.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
           <div
@@ -89,7 +90,7 @@ export function SignatureSection() {
               （商品詳細）
             </a>
           </div>
-        </div>
+        </WindowPanel>
       ))}
     </section>
   )

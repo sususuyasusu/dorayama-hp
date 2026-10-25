@@ -27,7 +27,7 @@ export function StoreSection() {
           <div className="col-span-2 flex flex-col justify-end gap-10 md:col-span-4 md:col-start-9 md:pb-10">
             <RevealLines
               lines={['深川不動堂と富岡八幡宮の参道。', '毎朝、店内で生地を焼いています。']}
-              className="font-mincho text-base text-paper md:text-lg"
+              className="chotai font-mincho text-base text-paper md:text-lg"
             />
             <Reveal delay={300}>
               <p className="font-mincho text-[14px] leading-[2.2] tracking-[0.08em] text-mute">
