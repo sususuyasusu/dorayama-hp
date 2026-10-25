@@ -1,6 +1,7 @@
 import { HeroLogo } from './hero-logo'
 import { HeroVideo } from './hero-video'
 import { IntroProgress } from './intro-progress'
+import { Reveal } from './reveal'
 import { SmartImage } from './smart-image'
 
 const COPY = [
@@ -83,10 +84,13 @@ export function IntroSection() {
             className="font-mincho flex flex-row-reverse gap-2.5 text-[14px] leading-[1.9] tracking-[0.25em] text-paper md:gap-8 md:text-[22px] md:leading-[2] md:tracking-[0.3em]"
             style={{ textShadow: '0 0 18px rgba(10,29,18,0.6)' }}
           >
+            {/* lines fade in one by one, right to left */}
             {COPY.map((line, i) => (
-              <span key={line} style={{ writingMode: 'vertical-rl', marginTop: `${(i % 3) * 1.5}em` }}>
-                {line}
-              </span>
+              <Reveal key={line} as="span" delay={i * 450} className="block !translate-y-0">
+                <span className="block" style={{ writingMode: 'vertical-rl', marginTop: `${(i % 3) * 1.5}em` }}>
+                  {line}
+                </span>
+              </Reveal>
             ))}
           </p>
         </div>
