@@ -2,39 +2,39 @@ import { Reveal } from './reveal'
 
 const ITEMS = [
   {
+    name: 'おふとん生地',
+    image: 'images/70.jpg',
+    alt: '銅鍋の横で、銅板に生地を流す手元',
+    copy: [
+      '卵の白身を泡立てたメレンゲに、',
+      '卵・小麦粉・砂糖を合わせた',
+      'どら山の黄金比率の生地。',
+      '毎朝、銅鍋で仕込み、',
+      'ひとつずつ銅板へ流します。',
+    ],
+  },
+  {
+    name: '銅板手焼き',
+    image: 'images/71.jpg',
+    alt: '銅板の上でこんがりと焼き上がった皮',
+    copy: [
+      '熱をむらなく伝える銅板で、',
+      '一枚ずつ手で焼き上げます。',
+      '焼き色と火の通りを見極め、',
+      'ふかふかのおふとんのような',
+      '皮に仕上げます。',
+    ],
+  },
+  {
     name: '黑どら',
-    image: 'images/40.jpg',
-    alt: '断面を見せた黑どら',
+    image: 'images/72.jpg',
+    alt: '断面を見せた、つぶあんの黑どら',
     copy: [
-      'どら山の定番、つぶあんのどらやき。',
+      '焼きたての皮で挟むのは、',
       '北海道十勝産の小豆を',
-      '甘さ控えめに炊き上げ、',
-      '隠し味に塩をきかせました。',
-      'ふかふかの生地との対比をどうぞ。',
-    ],
-  },
-  {
-    name: '白どら',
-    image: 'images/41.jpg',
-    alt: '断面を見せた白どら',
-    copy: [
-      '白いんげん豆の白あんを挟んだ、',
-      'やさしい甘さのどらやき。',
-      'なめらかな口あたりが、',
-      '卵白を泡立てた軽い生地に',
-      'よくなじみます。',
-    ],
-  },
-  {
-    name: 'あんバターどら',
-    image: 'images/42.jpg',
-    alt: 'つぶあんとバターを挟んだ、あんバターどら',
-    copy: [
-      '塩入りのつぶあんに、',
-      '十勝産生乳のバターを重ねました。',
-      'あんの甘さとバターのコク、',
-      'ひと口目から満ち足りる、',
-      'どら山の人気のひと品です。',
+      '甘さ控えめに炊いたつぶあん。',
+      '隠し味に塩をきかせた、',
+      'どら山の定番です。',
     ],
   },
 ]
@@ -63,9 +63,9 @@ export function SignatureSection() {
           <img src={item.image} alt={item.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 w-full bg-gradient-to-l from-[#ebe7df]/70 via-[#ebe7df]/35 to-transparent md:w-3/5"
+            className="pointer-events-none absolute inset-y-0 right-0 w-full bg-gradient-to-l from-[#0a1d12]/75 via-[#0a1d12]/40 to-transparent md:w-3/5"
           />
-          <div className="absolute inset-0 flex flex-row-reverse items-start gap-6 px-6 pt-[12svh] text-[#12301f] md:gap-10 md:px-[12vw] md:pt-[18svh]">
+          <div className="absolute inset-0 flex flex-row-reverse items-start gap-6 px-6 pt-[12svh] text-paper md:gap-10 md:px-[12vw] md:pt-[18svh]">
             <h3
               className="font-mincho shrink-0 text-[30px] font-bold tracking-[0.15em] md:text-[40px]"
               style={{ writingMode: 'vertical-rl' }}
