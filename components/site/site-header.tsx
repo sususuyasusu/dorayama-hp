@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { INSTAGRAM_URL, RESERVE_URL, SECTIONS } from '@/lib/site'
 import { cn } from '@/lib/utils'
-import { pillClass } from './pill-link'
 
 export function SiteHeader() {
   const [active, setActive] = useState<string>(SECTIONS[0].id)
@@ -36,56 +35,101 @@ export function SiteHeader() {
     }
   }, [open])
 
-  const activeLabel = SECTIONS.find((s) => s.id === active)?.label ?? 'Intro'
+  // like lujo: transparent over the opening video, a solid washi bar once the
+  // page has scrolled, hidden while scrolling down and back on scrolling up
+  const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  useEffect(() => {
+    let lastY = window.scrollY
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const y = window.scrollY
+      setScrolled(y > 40)
+      if (Math.abs(y - lastY) < 6) return
+      setHidden(y > lastY && y > window.innerHeight * 0.4)
+      lastY = y
+    }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
+  const solid = scrolled || open
+  const dark = scrolled || open
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-colors duration-500',
-        open ? 'text-[#12301f]' : 'text-paper',
-      )}
-    >
-      {/* blurred bar background lives in its own layer so the fixed menu panel
-          is never clipped by a backdrop-filter on the header itself */}
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* the bar slides away on its own; the menu panel below stays a sibling so
+          the slide never becomes the panel's containing block */}
       <div
-        aria-hidden="true"
         className={cn(
-          'absolute inset-x-0 top-0 h-14 border-b backdrop-blur-md transition-[opacity,border-color] duration-500 md:h-16',
-          open ? 'border-[#12301f]/10 opacity-0' : 'border-paper/[0.06] bg-ink/70 opacity-100',
+          'relative z-10 transition-[translate] duration-300 ease-out',
+          hidden && !open ? '-translate-y-full' : 'translate-y-0',
+          dark ? 'text-[#12301f]' : 'text-paper',
         )}
-      />
-      <div className="relative z-10 flex h-14 items-center justify-between gap-6 px-4 md:h-16 md:px-10">
-        <p className="flex items-center gap-3 text-[12px] tracking-[0.2em]" aria-live="polite">
-          <span aria-hidden="true" className="size-1 rounded-full bg-copper" />
-          <span key={activeLabel} className="animate-in fade-in duration-700">
-            {activeLabel}
-          </span>
-        </p>
-
-        <div className="hidden items-center gap-10 md:flex">
-          <nav aria-label="メインナビゲーション">
-            <ul className="flex items-center gap-8 text-[12px] tracking-[0.15em]">
-              {SECTIONS.map((s) => (
-                <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
-                    aria-current={active === s.id ? 'true' : undefined}
-                    className={cn(
-                      'transition-colors duration-500 hover:text-paper',
-                      active === s.id ? 'text-paper' : 'text-mute',
-                    )}
-                  >
-                    {s.nav}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <a href={RESERVE_URL} target="_blank" rel="noopener noreferrer" className={cn(pillClass, 'h-9 px-5')}>
-            ご予約
-            <span className="sr-only">（新しいタブで開きます）</span>
+      >
+        <div
+          aria-hidden="true"
+          className={cn(
+            'absolute inset-0 border-b transition-[background-color,border-color] duration-500',
+            solid && !open ? 'border-[#12301f]/10' : 'border-transparent',
+            solid ? 'bg-[#ebe7df]' : 'bg-transparent',
+          )}
+          style={solid ? { backgroundImage: 'url(images/grain.png)', backgroundBlendMode: 'overlay' } : undefined}
+        />
+        <div className="relative flex h-14 items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-16 md:px-10">
+          <a href="#intro" onClick={() => setOpen(false)} aria-label="門仲どらやき どら山 トップへ" className="block">
+            {/* logo drawn in the current text colour (white over video, green on washi) */}
+            <span
+              aria-hidden="true"
+              className="block h-[26px] w-[44px] bg-current transition-colors duration-500 md:h-[30px] md:w-[51px]"
+              style={{
+                maskImage: 'url(images/logo-mark.png)',
+                WebkitMaskImage: 'url(images/logo-mark.png)',
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+              }}
+            />
           </a>
-        </div>
+
+          <div className="hidden items-center gap-10 md:flex">
+            <nav aria-label="メインナビゲーション">
+              <ul className="flex items-center gap-8 text-[12px] tracking-[0.15em]">
+                {SECTIONS.map((s) => (
+                  <li key={s.id}>
+                    <a
+                      href={`#${s.id}`}
+                      aria-current={active === s.id ? 'true' : undefined}
+                      className={cn(
+                        'transition-opacity duration-500 hover:opacity-100',
+                        active === s.id ? 'opacity-100' : 'opacity-60',
+                      )}
+                    >
+                      {s.nav}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <a
+              href={RESERVE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 items-center rounded-full border border-current px-5 text-[12px] tracking-[0.15em] transition-colors duration-500 hover:bg-current/10"
+            >
+              ご予約
+              <span className="sr-only">（新しいタブで開きます）</span>
+            </a>
+          </div>
 
         <button
           type="button"
@@ -111,6 +155,7 @@ export function SiteHeader() {
             <path d="M15.5 4.5l-11 11M15.5 15.5l-11-11" stroke="currentColor" strokeWidth="1" fill="none" />
           </svg>
         </button>
+        </div>
       </div>
 
       {/* full-screen washi panel that fades in and out (mobile) */}

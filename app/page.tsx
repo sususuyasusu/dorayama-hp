@@ -18,12 +18,6 @@ export default function Page() {
         <AccessSection />
       </main>
       <SiteFooter />
-      <p
-        aria-hidden="true"
-        className="pointer-events-none fixed bottom-4 right-4 z-40 text-[10px] tracking-[0.4em] text-paper/70 mix-blend-difference md:bottom-6 md:right-8"
-      >
-        DORAYAMA
-      </p>
     </>
   )
 }
