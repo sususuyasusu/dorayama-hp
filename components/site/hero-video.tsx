@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from '@/hooks/use-motion'
 import { createLiquid } from '@/lib/liquid-gl'
+import { loaderDone } from './loader'
 import { cn } from '@/lib/utils'
 
 type HeroVideoProps = {
@@ -42,8 +43,12 @@ export function HeroVideo({ src, poster, label, className }: HeroVideoProps) {
       return
     }
     setGlActive(true)
-    liquid.start()
+    // begin the ripple reveal only once the opening loader lifts
+    const begin = () => liquid.start()
+    if (loaderDone()) begin()
+    else window.addEventListener('dorayama:loaded', begin, { once: true })
     return () => {
+      window.removeEventListener('dorayama:loaded', begin)
       liquid.destroy()
       canvas.remove()
       setGlActive(false)
