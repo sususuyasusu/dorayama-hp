@@ -34,7 +34,7 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
   return (
     <div ref={ref} className={cn('flex items-start gap-6 md:gap-16', className)}>
       <span
-        className="chotai mt-3 shrink-0 border-[0.5px] border-paper/50 px-[7px] py-3 text-[13px] font-extralight leading-[1.5] tracking-[0.25em] text-paper"
+        className="chotai mt-3 shrink-0 border-[0.5px] border-paper/50 px-[10px] py-[15px] outline outline-[0.5px] -outline-offset-[3.5px] outline-paper/50 text-[13px] font-extralight leading-[1.5] tracking-[0.25em] text-paper"
         style={fade(0, { writingMode: 'vertical-rl', fontFamily: 'var(--font-hairline), serif' })}
       >
         {jp}
