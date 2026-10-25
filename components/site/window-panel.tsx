@@ -15,17 +15,27 @@ export function WindowPanel({ children }: { children: ReactNode }) {
     const panel = panelRef.current
     const stage = stageRef.current
     if (!panel || !stage) return
-    let raf = 0
-    const update = () => {
-      raf = requestAnimationFrame(update)
+    const place = () => {
       const top = panel.getBoundingClientRect().top
-      const h = window.innerHeight
       // only move while the window overlaps the screen
-      if (top > h || top < -panel.offsetHeight) return
+      if (top > window.innerHeight || top < -panel.offsetHeight) return
       stage.style.transform = `translate3d(0, ${(-top).toFixed(1)}px, 0)`
     }
-    raf = requestAnimationFrame(update)
-    return () => cancelAnimationFrame(raf)
+    // every frame (smooth inertia scrolling) and on every native scroll event
+    let raf = 0
+    const loop = () => {
+      place()
+      raf = requestAnimationFrame(loop)
+    }
+    raf = requestAnimationFrame(loop)
+    window.addEventListener('scroll', place, { passive: true })
+    window.addEventListener('resize', place)
+    place()
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', place)
+      window.removeEventListener('resize', place)
+    }
   }, [])
 
   return (
