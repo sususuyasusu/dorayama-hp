@@ -20,15 +20,19 @@ export function Loader() {
 
   useEffect(() => {
     const root = document.documentElement
-    // the top page always plays the opening (every load and reload); the news
-    // pages skip it only when the visitor arrived from another page of this site
-    const isTop = /\/dorayama-hp\/?$/.test(location.pathname)
+    // every page plays the opening on a fresh visit and on every reload; it is
+    // skipped only when moving between pages of this site
     let fromSite = false
     try {
       fromSite = !!document.referrer && new URL(document.referrer).origin === location.origin
     } catch {}
-    // a link straight to a section (#concept etc.) skips the opening
-    if ((!isTop && fromSite) || location.hash) {
+    // a reload always plays the opening (the referrer survives a reload, so it
+    // must not count as "came from this site")
+    let navType = 'navigate'
+    try {
+      navType = (performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined)?.type ?? 'navigate'
+    } catch {}
+    if (navType !== 'reload' && fromSite) {
       ;(window as { __dorayamaLoaderDone?: boolean }).__dorayamaLoaderDone = true
       window.dispatchEvent(new Event('dorayama:loaded'))
       setPhase('done')
@@ -37,12 +41,11 @@ export function Loader() {
     // every load and reload of the top page starts from the very top, so the
     // opening never plays over a restored spot in the middle of the page
     const toTop = () => window.scrollTo(0, 0)
-    if (isTop) {
-      try {
-        history.scrollRestoration = 'manual'
-      } catch {}
-      toTop()
-    }
+    try {
+      history.scrollRestoration = 'manual'
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search)
+    } catch {}
+    toTop()
     root.style.overflow = 'hidden'
     const t0 = performance.now()
     const timers: number[] = []
@@ -51,7 +54,7 @@ export function Loader() {
     const finish = () => {
       if (finished) return
       finished = true
-      if (isTop) toTop()
+      toTop()
       const wait = Math.max(0, MIN_SHOW_MS - (performance.now() - t0))
       timers.push(
         window.setTimeout(() => {
