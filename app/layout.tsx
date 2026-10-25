@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Inter, Noto_Sans_JP, Noto_Serif_JP, Shippori_Mincho } from 'next/font/google'
+import { Cormorant_Garamond, Noto_Serif_JP, Shippori_Mincho } from 'next/font/google'
 import { Loader } from '@/components/site/loader'
 import { SmoothScroll } from '@/components/site/smooth-scroll'
 import './globals.css'
@@ -12,15 +12,7 @@ const mincho = Shippori_Mincho({
   preload: false,
 })
 
-const notoSans = Noto_Sans_JP({
-  weight: ['300', '400'],
-  subsets: ['latin'],
-  variable: '--font-noto-sans',
-  display: 'swap',
-  preload: false,
-})
-
-// sharp, hairline serif for the large English category titles
+// sharp serif for all Latin text and figures (category titles use the 300 cut)
 const display = Cormorant_Garamond({
   weight: ['300', '400'],
   subsets: ['latin'],
@@ -35,13 +27,6 @@ const hairline = Noto_Serif_JP({
   variable: '--font-hairline',
   display: 'swap',
   preload: false,
-})
-
-const inter = Inter({
-  weight: ['300', '400'],
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -76,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${mincho.variable} ${notoSans.variable} ${inter.variable} ${display.variable} ${hairline.variable}`}
+      className={`${mincho.variable} ${display.variable} ${hairline.variable}`}
     >
       <body
         className="antialiased"
@@ -85,6 +70,19 @@ export default function RootLayout({
         <Loader />
         <SmoothScroll />
         {children}
+        {/* the bottom of the screen always melts into the textured green, so
+            photos and text fade out as they scroll past the lower edge */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-[24svh] md:h-[20vh]"
+          style={{
+            backgroundColor: '#12301f',
+            backgroundImage: 'url(images/grain.png)',
+            backgroundBlendMode: 'overlay',
+            maskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.85) 22%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.85) 22%, transparent 100%)',
+          }}
+        />
       </body>
     </html>
   )
