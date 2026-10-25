@@ -1,7 +1,5 @@
 import { HeroLogo } from './hero-logo'
 import { HeroVideo } from './hero-video'
-import { LogoMark } from './logo-mark'
-import { Reveal } from './reveal'
 import { SmartImage } from './smart-image'
 
 export function IntroSection() {
@@ -23,7 +21,6 @@ export function IntroSection() {
           className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a1d12]/60 to-transparent"
         />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#0a1d12]/25" />
-        <HeroLogo />
       </div>
 
       <div className="flex min-h-svh flex-col items-center justify-center gap-12 px-4 pb-16 pt-24">
@@ -33,9 +30,6 @@ export function IntroSection() {
           eager
           className="aspect-[4/5] w-[min(68vw,340px)] md:w-[min(30vw,380px)]"
         />
-        <Reveal delay={600}>
-          <LogoMark size={80} />
-        </Reveal>
       </div>
 
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-16 px-4 pb-40 pt-24 md:grid-cols-3 md:gap-x-12 md:px-10 md:pb-56">
@@ -45,10 +39,7 @@ export function IntroSection() {
           parallax={0.06}
           className="aspect-[2/3] w-full"
         />
-        <div className="flex flex-col items-center gap-24 md:order-none md:mt-56">
-          <Reveal className="hidden md:block">
-            <LogoMark size={64} />
-          </Reveal>
+        <div className="flex flex-col items-center gap-24 md:order-none md:mt-80">
           <SmartImage
             src="images/30.jpg"
             alt="店頭の銅板で手焼きする様子"
@@ -56,9 +47,6 @@ export function IntroSection() {
             className="mt-32 aspect-[2/3] w-full md:mt-0"
           />
         </div>
-        <Reveal className="col-span-2 flex justify-center md:hidden">
-          <LogoMark size={64} />
-        </Reveal>
         <SmartImage
           src="images/31.jpg"
           alt="つぶあんを挟んだどらやき"
@@ -66,6 +54,9 @@ export function IntroSection() {
           className="col-span-2 mx-auto aspect-[2/3] w-2/3 md:col-span-1 md:mt-24 md:w-full"
         />
       </div>
+
+      {/* one mark, pinned to the centre of the screen for the whole section */}
+      <HeroLogo />
     </section>
   )
 }

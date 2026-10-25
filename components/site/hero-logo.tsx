@@ -1,54 +1,130 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useReducedMotion } from '@/hooks/use-motion'
+import { createLiquid } from '@/lib/liquid-gl'
 import { loaderDone } from './loader'
 
-// Centre mark over the opening video; it surfaces once the loader has lifted.
+const SRC = 'images/hero-mark.svg'
+const ASPECT = 123.3 / 133.3
+const COLOR = '#edeae4'
+
+const maskStyle = {
+  maskImage: `url(${SRC})`,
+  WebkitMaskImage: `url(${SRC})`,
+  maskSize: 'contain',
+  WebkitMaskSize: 'contain',
+  maskRepeat: 'no-repeat',
+  WebkitMaskRepeat: 'no-repeat',
+  maskPosition: 'center',
+  WebkitMaskPosition: 'center',
+} as const
+
+// Paint the mark into an offscreen canvas in the paper colour so the liquid
+// shader can ripple it like the photos.
+function paintMark(): Promise<HTMLCanvasElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => {
+      const w = 640
+      const h = Math.round(w / ASPECT)
+      const c = document.createElement('canvas')
+      c.width = w
+      c.height = h
+      const ctx = c.getContext('2d')
+      if (!ctx) return reject(new Error('no 2d context'))
+      ctx.drawImage(img, 0, 0, w, h)
+      ctx.globalCompositeOperation = 'source-in'
+      ctx.fillStyle = COLOR
+      ctx.fillRect(0, 0, w, h)
+      resolve(c)
+    }
+    img.onerror = reject
+    img.src = SRC
+  })
+}
+
+function whenLoaderDone(fn: () => void) {
+  if (loaderDone()) {
+    fn()
+    return () => {}
+  }
+  window.addEventListener('dorayama:loaded', fn, { once: true })
+  return () => window.removeEventListener('dorayama:loaded', fn)
+}
+
+// Like akari.care: the mark sits fixed at the centre of the screen for the
+// whole opening section while the video and photos scroll past, then leaves
+// with the section. It ripples in (same shader as the photos) after the loader.
 export function HeroLogo() {
+  const holderRef = useRef<HTMLDivElement>(null)
+  const [fallback, setFallback] = useState(false)
   const [shown, setShown] = useState(false)
+  const reduced = useReducedMotion()
 
   useEffect(() => {
-    const show = () => window.setTimeout(() => setShown(true), 1200)
-    if (loaderDone()) {
-      const id = show()
-      return () => clearTimeout(id)
+    if (reduced) {
+      setFallback(true)
+      return whenLoaderDone(() => setShown(true))
     }
-    let id = 0
-    const onLoaded = () => {
-      id = show()
-    }
-    window.addEventListener('dorayama:loaded', onLoaded, { once: true })
+    const holder = holderRef.current
+    if (!holder) return
+    let liquid: ReturnType<typeof createLiquid> = null
+    let canvas: HTMLCanvasElement | null = null
+    let timer = 0
+    let cancelled = false
+    let unlisten = () => {}
+
+    paintMark()
+      .then((mark) => {
+        if (cancelled) return
+        canvas = document.createElement('canvas')
+        canvas.setAttribute('aria-hidden', 'true')
+        canvas.className = 'absolute inset-0 h-full w-full'
+        holder.appendChild(canvas)
+        liquid = createLiquid(canvas, mark, { revealStart: null }, () => setFallback(true), { wipe: false })
+        if (!liquid) {
+          canvas.remove()
+          setFallback(true)
+          return
+        }
+        unlisten = whenLoaderDone(() => {
+          timer = window.setTimeout(() => liquid?.start(), 900)
+        })
+      })
+      .catch(() => setFallback(true))
+
     return () => {
-      window.removeEventListener('dorayama:loaded', onLoaded)
-      clearTimeout(id)
+      cancelled = true
+      unlisten()
+      clearTimeout(timer)
+      liquid?.destroy()
+      canvas?.remove()
     }
-  }, [])
+  }, [reduced])
+
+  useEffect(() => {
+    if (!fallback) return
+    return whenLoaderDone(() => setShown(true))
+  }, [fallback])
 
   return (
-    <div
-      className="pointer-events-none absolute inset-0 flex items-center justify-center"
-      style={{
-        opacity: shown ? 1 : 0,
-        filter: shown ? 'blur(0)' : 'blur(6px)',
-        transition: 'opacity 1.6s cubic-bezier(0.43, 0.05, 0.17, 1), filter 1.6s cubic-bezier(0.43, 0.05, 0.17, 1)',
-      }}
-    >
-      {/* hero mark (aikon.svg) drawn in the paper colour over the video */}
-      <span
-        role="img"
-        aria-label="どら山"
-        className="block aspect-[123.3/133.3] w-[88px] bg-paper md:w-[112px]"
-        style={{
-          maskImage: 'url(images/hero-mark.svg)',
-          WebkitMaskImage: 'url(images/hero-mark.svg)',
-          maskSize: 'contain',
-          WebkitMaskSize: 'contain',
-          maskRepeat: 'no-repeat',
-          WebkitMaskRepeat: 'no-repeat',
-          maskPosition: 'center',
-          WebkitMaskPosition: 'center',
-        }}
-      />
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20">
+      <div className="sticky top-0 flex h-svh items-center justify-center">
+        <div
+          ref={holderRef}
+          role="img"
+          aria-label="どら山"
+          className="relative aspect-[123.3/133.3] w-[176px] md:w-[224px]"
+        >
+          {fallback && (
+            <span
+              className="absolute inset-0 bg-paper transition-opacity duration-[1600ms]"
+              style={{ ...maskStyle, opacity: shown ? 1 : 0 }}
+            />
+          )}
+        </div>
+      </div>
     </div>
   )
 }

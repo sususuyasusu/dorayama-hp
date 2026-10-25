@@ -19,6 +19,7 @@ uniform float uReveal;
 uniform float uAmp;
 uniform float uImgAspect;
 uniform float uCanvasAspect;
+uniform float uWipe;
 varying vec2 vUv;
 
 float hash(float n) { return fract(sin(n) * 43758.5453123); }
@@ -43,7 +44,7 @@ void main() {
 
   // wavy wipe from the left while revealing
   float edge = uReveal * 1.35 - 0.2 + w * 0.18 * (1.0 - uReveal);
-  float mask = 1.0 - smoothstep(edge - 0.1, edge, uv.x);
+  float mask = mix(1.0, 1.0 - smoothstep(edge - 0.1, edge, uv.x), uWipe);
 
   // object-fit: cover
   vec2 ratio = vec2(
@@ -55,8 +56,9 @@ void main() {
   float inside = step(0.0, d.x) * step(d.x, 1.0) * step(0.0, d.y) * step(d.y, 1.0);
   vec4 c = texture2D(uTex, t);
   float dim = 1.0 - 0.3 * clamp(uAmp * 6.0, 0.0, 1.0);
-  float a = mask * inside * smoothstep(0.0, 0.35, uReveal);
-  gl_FragColor = vec4(c.rgb * dim * a, a);
+  // the texture is premultiplied, so cut-out marks (logos) keep clean edges
+  float m = mask * inside * smoothstep(0.0, 0.35, uReveal);
+  gl_FragColor = vec4(c.rgb * dim * m, c.a * m);
 }
 `
 
@@ -93,9 +95,10 @@ export type Liquid = {
 
 export function createLiquid(
   canvas: HTMLCanvasElement,
-  src: string | HTMLVideoElement,
+  src: string | HTMLVideoElement | HTMLCanvasElement,
   state: { revealStart: number | null },
   onFail: () => void,
+  { wipe = true }: { wipe?: boolean } = {},
 ): Liquid | null {
   trackScroll()
   const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false })
@@ -127,6 +130,7 @@ export function createLiquid(
   const uAmp = u('uAmp')
   const uImgAspect = u('uImgAspect')
   const uCanvasAspect = u('uCanvasAspect')
+  gl.uniform1f(u('uWipe'), wipe ? 1 : 0)
 
   gl.enable(gl.BLEND)
   gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
@@ -142,6 +146,7 @@ export function createLiquid(
   const upload = (source: TexImageSource) => {
     gl.bindTexture(gl.TEXTURE_2D, tex)
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source)
   }
   const initTexture = () => {
@@ -152,9 +157,14 @@ export function createLiquid(
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
   }
 
-  // a playing <video> is re-uploaded every frame; an image once
-  const video = typeof src === 'string' ? null : src
-  if (video) {
+  // a playing <video> is re-uploaded every frame; an image or canvas once
+  const video = src instanceof HTMLVideoElement ? src : null
+  if (src instanceof HTMLCanvasElement) {
+    imgAspect = src.width / src.height
+    initTexture()
+    upload(src)
+    loaded = true
+  } else if (video) {
     const ready = () => {
       if (dead || loaded || video.readyState < 2) return
       imgAspect = video.videoWidth / video.videoHeight

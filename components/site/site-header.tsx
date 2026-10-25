@@ -61,8 +61,10 @@ export function SiteHeader() {
     }
   }, [])
 
-  const solid = scrolled || open
-  const dark = scrolled || open
+  // scrolled: the earlier translucent green bar with the page blurred behind it;
+  // menu open: transparent bar over the washi panel with green ink
+  const blurred = scrolled && !open
+  const dark = open
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -78,11 +80,9 @@ export function SiteHeader() {
         <div
           aria-hidden="true"
           className={cn(
-            'absolute inset-0 border-b transition-[background-color,border-color] duration-500',
-            solid && !open ? 'border-[#12301f]/10' : 'border-transparent',
-            solid ? 'bg-[#ebe7df]' : 'bg-transparent',
+            'absolute inset-0 border-b backdrop-blur-md transition-[opacity,border-color] duration-500',
+            blurred ? 'border-paper/[0.06] bg-ink/70 opacity-100' : 'border-transparent opacity-0',
           )}
-          style={solid ? { backgroundImage: 'url(images/grain.png)', backgroundBlendMode: 'overlay' } : undefined}
         />
         <div className="relative flex h-14 items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-16 md:px-10">
           <a href="#intro" onClick={() => setOpen(false)} aria-label="門仲どらやき どら山 トップへ" className="block">
@@ -101,43 +101,14 @@ export function SiteHeader() {
             />
           </a>
 
-          <div className="hidden items-center gap-10 md:flex">
-            <nav aria-label="メインナビゲーション">
-              <ul className="flex items-center gap-8 text-[12px] tracking-[0.15em]">
-                {SECTIONS.map((s) => (
-                  <li key={s.id}>
-                    <a
-                      href={`#${s.id}`}
-                      aria-current={active === s.id ? 'true' : undefined}
-                      className={cn(
-                        'transition-opacity duration-500 hover:opacity-100',
-                        active === s.id ? 'opacity-100' : 'opacity-60',
-                      )}
-                    >
-                      {s.nav}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <a
-              href={RESERVE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-9 items-center rounded-full border border-current px-5 text-[12px] tracking-[0.15em] transition-colors duration-500 hover:bg-current/10"
-            >
-              ご予約
-              <span className="sr-only">（新しいタブで開きます）</span>
-            </a>
-          </div>
-
+        {/* the menu is always behind the hamburger, on every screen size */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'メニューを閉じる' : 'メニューを開く'}
-          className="relative flex size-10 items-center justify-center md:hidden"
+          className="relative flex size-10 items-center justify-center"
         >
           {/* three thin lines cross-fade into a thin × */}
           <svg
@@ -164,7 +135,7 @@ export function SiteHeader() {
         inert={!open}
         aria-hidden={!open}
         className={cn(
-          'fixed inset-0 h-svh overflow-y-auto transition-[opacity,visibility] duration-500 ease-out md:hidden',
+          'fixed inset-0 h-svh overflow-y-auto transition-[opacity,visibility] duration-500 ease-out',
           open ? 'visible opacity-100' : 'invisible opacity-0',
         )}
         style={{
@@ -173,7 +144,7 @@ export function SiteHeader() {
           backgroundBlendMode: 'overlay',
         }}
       >
-        <div className="px-5 pb-16 pt-[calc(3.5rem+16vh)] text-[#12301f]">
+        <div className="px-5 pb-16 pt-[calc(3.5rem+16vh)] text-[#12301f] md:px-10 md:pt-[calc(4rem+18vh)]">
           <nav aria-label="モバイルナビゲーション">
             <ul className="flex flex-col gap-3">
               {SECTIONS.map((s, i) => (
@@ -186,8 +157,13 @@ export function SiteHeader() {
                     transitionDelay: open ? `${150 + i * 60}ms` : '0ms',
                   }}
                 >
-                  <a href={`#${s.id}`} onClick={() => setOpen(false)} className="flex items-baseline gap-4">
-                    <span className="text-[26px] font-light leading-[1.25]" style={{ fontFamily: 'var(--font-display), serif' }}>
+                  <a
+                    href={`#${s.id}`}
+                    onClick={() => setOpen(false)}
+                    aria-current={active === s.id ? 'true' : undefined}
+                    className="flex items-baseline gap-4"
+                  >
+                    <span className="text-[26px] font-light leading-[1.25] md:text-[40px]" style={{ fontFamily: 'var(--font-display), serif' }}>
                       {s.nav}
                     </span>
                     <span className="text-[11px] tracking-[0.2em] text-[#12301f]/55">{s.jp}</span>
