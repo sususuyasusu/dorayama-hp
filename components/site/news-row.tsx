@@ -21,9 +21,9 @@ export function NewsRow({ item }: { item: NewsItem }) {
       <p className="font-mincho flex-1 text-[14px] leading-[1.8] tracking-[0.06em] text-paper md:text-[17px]">{item.title}</p>
       <span
         aria-hidden="true"
-        className="flex size-7 shrink-0 items-center justify-center rounded-[4px] bg-paper text-[#12301f] transition-colors duration-500 group-hover:bg-[#12301f] group-hover:text-paper md:size-8"
+        className="flex size-5 shrink-0 items-center justify-center rounded-[3px] bg-paper text-[#12301f] transition-colors duration-500 group-hover:bg-[#12301f] group-hover:text-paper md:size-6"
       >
-        <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <svg viewBox="0 0 16 16" className="size-3 md:size-3.5" fill="none" stroke="currentColor" strokeWidth="1.6">
           <path d="M3 8h10M9 4l4 4-4 4" />
         </svg>
       </span>
