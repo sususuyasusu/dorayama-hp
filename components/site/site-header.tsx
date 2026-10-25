@@ -84,12 +84,12 @@ export function SiteHeader() {
             blurred ? 'border-transparent opacity-100' : 'border-transparent opacity-0',
           )}
         />
-        <div className="relative flex h-14 items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-16 md:px-10">
+        <div className="relative flex h-14 items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-16 md:px-10 lg:h-20 lg:px-14 2xl:h-24 2xl:px-20">
           <a href="#intro" onClick={() => setOpen(false)} aria-label="門仲どらやき どら山 トップへ" className="block">
             {/* logo drawn in the current text colour (white over video, green on washi) */}
             <span
               aria-hidden="true"
-              className="block h-[26px] w-[44px] bg-current transition-colors duration-500 md:h-[30px] md:w-[51px]"
+              className="block h-[26px] w-[44px] bg-current transition-colors duration-500 md:h-[30px] md:w-[51px] lg:h-[38px] lg:w-[65px] 2xl:h-[46px] 2xl:w-[78px]"
               style={{
                 maskImage: 'url(images/logo-mark.png)',
                 WebkitMaskImage: 'url(images/logo-mark.png)',
@@ -108,20 +108,20 @@ export function SiteHeader() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'メニューを閉じる' : 'メニューを開く'}
-          className="relative flex size-10 items-center justify-center"
+          className="relative flex size-10 items-center justify-center lg:size-12 2xl:size-14"
         >
           {/* three thin lines cross-fade into a thin × */}
           <svg
             aria-hidden="true"
             viewBox="0 0 20 20"
-            className={cn('absolute size-5 transition-[opacity,visibility] duration-500', open ? 'invisible opacity-0' : 'opacity-100')}
+            className={cn('absolute size-5 lg:size-7 2xl:size-8 transition-[opacity,visibility] duration-500', open ? 'invisible opacity-0' : 'opacity-100')}
           >
             <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1" fill="none" />
           </svg>
           <svg
             aria-hidden="true"
             viewBox="0 0 20 20"
-            className={cn('absolute size-5 transition-[opacity,visibility] duration-500', open ? 'opacity-100' : 'invisible opacity-0')}
+            className={cn('absolute size-5 lg:size-7 2xl:size-8 transition-[opacity,visibility] duration-500', open ? 'opacity-100' : 'invisible opacity-0')}
           >
             <path d="M15.5 4.5l-11 11M15.5 15.5l-11-11" stroke="currentColor" strokeWidth="1" fill="none" />
           </svg>
@@ -144,7 +144,7 @@ export function SiteHeader() {
           backgroundBlendMode: 'overlay',
         }}
       >
-        <div className="px-5 pb-16 pt-[calc(3.5rem+16vh)] text-[#12301f] md:px-10 md:pt-[calc(4rem+18vh)]">
+        <div className="px-5 pb-16 pt-[calc(3.5rem+16vh)] text-[#12301f] md:px-10 md:pt-[calc(4rem+18vh)] lg:px-14 2xl:px-20">
           <nav aria-label="モバイルナビゲーション">
             <ul className="flex flex-col gap-3">
               {SECTIONS.map((s, i) => (
