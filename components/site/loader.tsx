@@ -20,13 +20,14 @@ export function Loader() {
 
   useEffect(() => {
     const root = document.documentElement
-    // only the first page of a visit plays the opening; later pages skip it
-    let seen = false
+    // the top page always plays the opening (every load and reload); the news
+    // pages skip it only when the visitor arrived from another page of this site
+    const isTop = /\/dorayama-hp\/?$/.test(location.pathname)
+    let fromSite = false
     try {
-      seen = sessionStorage.getItem('dorayama-loader') === '1'
-      sessionStorage.setItem('dorayama-loader', '1')
+      fromSite = !!document.referrer && new URL(document.referrer).origin === location.origin
     } catch {}
-    if (seen) {
+    if (!isTop && fromSite) {
       ;(window as { __dorayamaLoaderDone?: boolean }).__dorayamaLoaderDone = true
       window.dispatchEvent(new Event('dorayama:loaded'))
       setPhase('done')
