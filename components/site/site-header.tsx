@@ -81,7 +81,7 @@ export function SiteHeader() {
           aria-hidden="true"
           className={cn(
             'absolute inset-0 border-b backdrop-blur-md transition-[opacity,border-color] duration-500',
-            blurred ? 'border-paper/[0.06] bg-ink/70 opacity-100' : 'border-transparent opacity-0',
+            blurred ? 'border-transparent opacity-100' : 'border-transparent opacity-0',
           )}
         />
         <div className="relative flex h-14 items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-16 md:px-10">
