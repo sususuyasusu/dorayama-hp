@@ -52,8 +52,11 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
           {en}
         </h2>
         <p
-          className="mt-6 text-[11px] leading-[1.9] tracking-[0.06em] text-mute"
-          style={fade(450, { translate: shown ? '0 0' : '0 8px' })}
+          className="mt-6 text-[14px] font-normal leading-[1.7] tracking-[0.04em] text-mute md:text-[15px]"
+          style={fade(450, {
+            fontFamily: 'var(--font-display), serif',
+            translate: shown ? '0 0' : '0 8px',
+          })}
         >
           {lead.map((line) => (
             <span key={line} className="block">

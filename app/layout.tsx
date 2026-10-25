@@ -22,7 +22,7 @@ const notoSans = Noto_Sans_JP({
 
 // sharp, hairline serif for the large English category titles
 const display = Cormorant_Garamond({
-  weight: '300',
+  weight: ['300', '400'],
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
