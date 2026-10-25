@@ -51,8 +51,7 @@ const PRODUCTS: Product[] = [
     description: '季節のフルーツとクリームを、ふかふかの生地で包みました。中身は時季によって入れ替わります。',
     price: '480',
     image: 'images/44.jpg',
-    alt: 'フルーツとクリームを挟んだ生どら',
-    gallery: ['images/45.jpg', 'images/46.jpg', 'images/47.jpg', 'images/48.jpg', 'images/49.jpg'],
+    alt: 'バナナとクリームを挟んだ生どら',
   },
   {
     name: '旬どら（月替わり）',
