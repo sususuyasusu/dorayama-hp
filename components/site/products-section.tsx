@@ -89,6 +89,17 @@ export function ProductsSection() {
       const scrollable = rect.height - window.innerHeight
       const progress = scrollable > 0 ? Math.min(Math.max(-rect.top / scrollable, 0), 1) : 0
       track.style.transform = `translate3d(${(-progress * distanceRef.current).toFixed(1)}px,0,0)`
+      // each panel's caption is see-through near the screen edges and fades in
+      // as the panel slides toward the middle
+      const vw = window.innerWidth
+      track.querySelectorAll<HTMLElement>('[data-fade]').forEach((el) => {
+        const r = el.getBoundingClientRect()
+        const offset = Math.abs(r.left + r.width / 2 - vw / 2) / vw
+        const t = Math.min(Math.max((0.62 - offset) / 0.32, 0), 1)
+        const eased = t * t * (3 - 2 * t)
+        el.style.opacity = eased.toFixed(3)
+        el.style.translate = `0 ${((1 - eased) * 14).toFixed(1)}px`
+      })
     }
     const measure = () => {
       const distance = Math.max(track.scrollWidth - window.innerWidth, 0)
@@ -197,7 +208,10 @@ function ProductPanel({ product, index }: { product: Product; index: number }) {
       ) : (
         <SmartImage src={product.image} alt={product.alt} className="h-[46svh] w-full md:h-[62vh]" />
       )}
-      <div className="flex flex-wrap items-end justify-between gap-4 pb-[12vh] md:gap-6 md:pb-24">
+      <div
+        data-fade
+        className="flex flex-wrap items-end justify-between gap-4 pb-[12vh] opacity-0 will-change-[opacity,translate] md:gap-6 md:pb-24"
+      >
         <div className="min-w-0">
           <h3 id={`product-${index}`} className="flex items-baseline gap-4 text-paper">
             <span className="text-[12px] text-copper tabular-nums" aria-hidden="true">
