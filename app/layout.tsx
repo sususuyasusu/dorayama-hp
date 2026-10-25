@@ -101,7 +101,10 @@ export const metadata: Metadata = {
     images: ['/images/70.jpg'],
   },
   icons: {
-    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
     apple: '/apple-icon.png',
   },
 }
