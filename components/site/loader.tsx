@@ -27,11 +27,30 @@ export function Loader() {
     try {
       fromSite = !!document.referrer && new URL(document.referrer).origin === location.origin
     } catch {}
-    if (!isTop && fromSite) {
+    // a reload / back-forward that returns to a spot partway down the page, or
+    // a link to a section, must not play the opening over the middle of the page
+    let restoredMidPage = false
+    try {
+      const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined
+      const returning = nav?.type === 'reload' || nav?.type === 'back_forward'
+      restoredMidPage = returning && Number(sessionStorage.getItem('dorayama-scroll') || 0) > 80
+    } catch {}
+    if (location.hash) restoredMidPage = true
+    const saveScroll = () => {
+      try {
+        sessionStorage.setItem('dorayama-scroll', String(Math.round(window.scrollY)))
+      } catch {}
+    }
+    window.addEventListener('pagehide', saveScroll)
+    window.addEventListener('scroll', saveScroll, { passive: true })
+    if ((!isTop && fromSite) || restoredMidPage) {
       ;(window as { __dorayamaLoaderDone?: boolean }).__dorayamaLoaderDone = true
       window.dispatchEvent(new Event('dorayama:loaded'))
       setPhase('done')
-      return
+      return () => {
+        window.removeEventListener('pagehide', saveScroll)
+        window.removeEventListener('scroll', saveScroll)
+      }
     }
     root.style.overflow = 'hidden'
     const t0 = performance.now()
@@ -66,6 +85,8 @@ export function Loader() {
     return () => {
       timers.forEach(clearTimeout)
       window.removeEventListener('load', finish)
+      window.removeEventListener('pagehide', saveScroll)
+      window.removeEventListener('scroll', saveScroll)
       root.style.overflow = ''
     }
   }, [])
