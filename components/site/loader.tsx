@@ -20,6 +20,18 @@ export function Loader() {
 
   useEffect(() => {
     const root = document.documentElement
+    // only the first page of a visit plays the opening; later pages skip it
+    let seen = false
+    try {
+      seen = sessionStorage.getItem('dorayama-loader') === '1'
+      sessionStorage.setItem('dorayama-loader', '1')
+    } catch {}
+    if (seen) {
+      ;(window as { __dorayamaLoaderDone?: boolean }).__dorayamaLoaderDone = true
+      window.dispatchEvent(new Event('dorayama:loaded'))
+      setPhase('done')
+      return
+    }
     root.style.overflow = 'hidden'
     const t0 = performance.now()
     const timers: number[] = []

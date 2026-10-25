@@ -2,8 +2,11 @@ import { INSTAGRAM_URL, RESERVE_URL } from '@/lib/site'
 import { PillLink } from './pill-link'
 import { Reveal } from './reveal'
 import { SectionHeading } from './section-heading'
+import { ShopMap } from './shop-map'
 
 const ADDRESS = '東京都江東区門前仲町2丁目6-9 ひいらぎビル1F'
+const GOOGLE_MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=%E9%96%80%E4%BB%B2%E3%81%A9%E3%82%89%E3%82%84%E3%81%8D%20%E3%81%A9%E3%82%89%E5%B1%B1%20%E7%B8%BD%E6%9C%AC%E9%8B%AA'
 
 const INFO: [string, React.ReactNode][] = [
   ['店名', '門仲どらやき どら山 總本鋪'],
@@ -63,15 +66,17 @@ export function AccessSection() {
             </div>
           </Reveal>
 
-          <Reveal delay={200} className="img-frame relative aspect-square w-full overflow-hidden md:aspect-auto md:min-h-[28rem]">
-            <iframe
-              title="どら山 總本鋪の地図"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(`〒135-0048 ${ADDRESS}`)}&output=embed`}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 h-full w-full border-0"
-              style={{ filter: 'grayscale(1) invert(0.92) contrast(0.85) brightness(0.9) sepia(0.12)' }}
-            />
+          <Reveal delay={200} className="flex flex-col gap-4">
+            <ShopMap className="img-frame relative aspect-square w-full overflow-hidden md:aspect-auto md:min-h-[28rem] md:flex-1" />
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="self-end text-[12px] tracking-[0.1em] text-mute underline decoration-paper/30 underline-offset-4 transition-colors hover:text-paper"
+            >
+              Googleマップで開く・経路を調べる
+              <span className="sr-only">（新しいタブで開きます）</span>
+            </a>
           </Reveal>
         </div>
       </div>

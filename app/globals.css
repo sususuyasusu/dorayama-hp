@@ -90,6 +90,25 @@ main.viewport-fade {
   mask-image: linear-gradient(to bottom, #000 var(--fade-start, 100vh), transparent var(--fade-end, 100vh));
 }
 
+/* shop map: quiet controls and credits that match the green page */
+.shop-map .maplibregl-ctrl-group {
+  background: rgb(235 231 223 / 0.9);
+  border-radius: 9999px;
+  box-shadow: none;
+}
+.shop-map .maplibregl-ctrl-attrib,
+.shop-map .maplibregl-ctrl-attrib.maplibregl-compact {
+  background: rgb(18 48 31 / 0.75) !important;
+  color: #a3ad9f !important;
+  font-size: 10px;
+}
+.shop-map .maplibregl-ctrl-attrib a {
+  color: #a3ad9f !important;
+}
+.shop-map .maplibregl-ctrl-attrib-button {
+  filter: invert(0.85);
+}
+
 /* opening loader: progress line and logo fade-in */
 .loader-bar {
   scale: 0 1;

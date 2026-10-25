@@ -64,6 +64,10 @@ export default function RootLayout({
       lang="ja"
       className={`${mincho.variable} ${display.variable} ${hairline.variable}`}
     >
+      <head>
+        {/* every relative image / page link resolves from the site root, on any page */}
+        <base href="/dorayama-hp/" />
+      </head>
       <body
         className="antialiased"
         style={{ backgroundImage: 'url(images/grain.png)', backgroundBlendMode: 'overlay' }}
