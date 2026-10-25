@@ -20,35 +20,35 @@ type Product = {
 const PRODUCTS: Product[] = [
   {
     name: '黑どら（つぶあん）',
-    description: '塩をきかせた十勝小豆のつぶあん。',
+    description: 'どら山の定番。北海道十勝産の小豆を甘さ控えめに炊き、隠し味に塩をきかせたつぶあんを、ふかふかの生地でたっぷり挟みました。',
     price: '299',
     image: 'images/40.jpg',
     alt: '黑どら（つぶあん）',
   },
   {
     name: '白どら（白あん）',
-    description: '白いんげん豆のやさしい白あん。',
+    description: '白いんげん豆の白あんを挟んだ、やさしい甘さのどらやき。つぶあんとはまた違う、なめらかな口あたりを楽しめます。',
     price: '299',
     image: 'images/41.jpg',
     alt: '白どら（白あん）',
   },
   {
     name: 'あんバターどら',
-    description: 'つぶあんと、十勝産生乳のバター。',
+    description: '塩入りのつぶあんに、十勝産生乳のバターを合わせました。あんの甘さとバターのコクが重なる、ひと口目から満足感のある一品です。',
     price: '399',
     image: 'images/42.jpg',
     alt: 'つぶあんとバターを挟んだ、あんバターどら',
   },
   {
     name: 'めっちゃ抹茶どら',
-    description: '抹茶をたっぷり使った、緑のどらやき。',
+    description: '抹茶をたっぷり使った、鮮やかな緑のどらやき。抹茶好きの方にこそ味わっていただきたい、香りの立つひと品です。',
     price: '450',
     image: 'images/43.jpg',
     alt: '抹茶色の生地の、めっちゃ抹茶どら',
   },
   {
     name: '生どら',
-    description: '季節のフルーツとクリームをふかふか生地で。',
+    description: '季節のフルーツとクリームを、ふかふかの生地で包みました。中身は時季によって入れ替わります。',
     price: '480',
     image: 'images/44.jpg',
     alt: 'フルーツとクリームを挟んだ生どら',
@@ -56,14 +56,21 @@ const PRODUCTS: Product[] = [
   },
   {
     name: '旬どら（月替わり）',
-    description: '10月は「幻の栗マロンかぼちゃどら」。',
+    description: '毎月入れ替わる、季節のどらやき。10月は「幻の栗マロンかぼちゃどら」です。月ごとの味はお知らせとInstagramでご案内します。',
     price: '450〜',
     image: 'images/14.jpg',
     alt: '10月の旬どら、幻の栗マロンかぼちゃどら',
   },
   {
+    name: '皮だけ（4枚）',
+    description: 'ふかふかの生地だけを4枚にした、どら山ならではのセット。あんこが苦手な方も、お好みのトッピングでオリジナルのどらやきをお楽しみいただけます。',
+    price: '430',
+    image: 'images/53.jpg',
+    alt: 'どらやきの皮だけ4枚セット',
+  },
+  {
     name: '手みやげ・ギフト',
-    description: '個包装と箱、紙袋でお渡しします。',
+    description: 'ひとつずつ個包装にし、箱と紙袋に入れてお渡しします。個包装は紙袋をミシン目で開けるだけ。ご挨拶や手みやげにどうぞ。',
     image: 'images/51.jpg',
     alt: '個包装のどらやきとギフト箱、紙袋',
   },
@@ -157,7 +164,7 @@ export function ProductsSection() {
                 lead={['Skins baked fresh every morning,', 'with classic and seasonal fillings.']}
               />
               <Reveal delay={300} className="mt-10 text-[13px] leading-loose tracking-[0.08em] text-mute md:pl-[calc(2rem+4rem)]">
-                <p>毎朝焼き上げる皮に、季節ごとの餡を。ご予約は翌日以降、5個から承ります。</p>
+                <p>毎朝焼き上げる皮に、定番のつぶあんと白あん、季節ごとの味を挟んでいます。店頭ではその日に焼いたどらやきを、ご予約はテイクイーツで翌日以降のお受け取り分を5個から承ります。</p>
               </Reveal>
             </div>
 
@@ -168,24 +175,9 @@ export function ProductsSection() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-4xl px-4 pb-32 pt-8 md:px-10 md:pb-48 md:pt-24">
+      <div className="mx-auto max-w-4xl px-4 pb-32 pt-8 md:px-10 md:pb-48 md:pt-16">
         <Reveal>
-          <h3 className="mb-8 text-[12px] tracking-[0.2em] text-mute">その他</h3>
-          <dl className="border-t border-paper/10 text-[13px] tracking-[0.1em]">
-            {[
-              ['皮だけ（4枚）', '430'],
-              ['瓶コーヒー', '300'],
-            ].map(([name, price]) => (
-              <div key={name} className="flex items-baseline justify-between border-b border-paper/10 py-5">
-                <dt className="text-paper">{name}</dt>
-                <dd className="text-paper tabular-nums">
-                  {price}
-                  <span className="ml-0.5 text-mute">圓</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-6 text-[11px] tracking-[0.1em] text-mute">価格はすべて税込です。</p>
+          <p className="text-[11px] tracking-[0.1em] text-mute">価格はすべて税込です。</p>
         </Reveal>
       </div>
     </section>

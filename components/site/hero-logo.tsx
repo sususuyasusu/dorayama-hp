@@ -53,9 +53,8 @@ function whenLoaderDone(fn: () => void) {
   return () => window.removeEventListener('dorayama:loaded', fn)
 }
 
-// Like akari.care: the mark sits fixed at the centre of the screen for the
-// whole opening section while the video and photos scroll past, then leaves
-// with the section. It ripples in (same shader as the photos) after the loader.
+// Centre mark over the opening video. It ripples in (same shader as the
+// photos) after the loader; its position on scroll is driven by the parent.
 export function HeroLogo() {
   const holderRef = useRef<HTMLDivElement>(null)
   const [fallback, setFallback] = useState(false)
@@ -109,21 +108,19 @@ export function HeroLogo() {
   }, [fallback])
 
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20">
-      <div className="sticky top-0 flex h-svh items-center justify-center">
-        <div
-          ref={holderRef}
-          role="img"
-          aria-label="どら山"
-          className="relative aspect-[123.3/133.3] w-[176px] md:w-[224px]"
-        >
-          {fallback && (
-            <span
-              className="absolute inset-0 bg-paper transition-opacity duration-[1600ms]"
-              style={{ ...maskStyle, opacity: shown ? 1 : 0 }}
-            />
-          )}
-        </div>
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+      <div
+        ref={holderRef}
+        role="img"
+        aria-label="どら山"
+        className="relative aspect-[123.3/133.3] w-[176px] md:w-[224px]"
+      >
+        {fallback && (
+          <span
+            className="absolute inset-0 bg-paper transition-opacity duration-[1600ms]"
+            style={{ ...maskStyle, opacity: shown ? 1 : 0 }}
+          />
+        )}
       </div>
     </div>
   )

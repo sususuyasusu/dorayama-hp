@@ -3,6 +3,7 @@ export const INSTAGRAM_URL = 'https://www.instagram.com/dorayama_jp/'
 
 export const SECTIONS = [
   { id: 'intro', label: 'Intro', nav: 'Home', jp: 'トップ' },
+  { id: 'news', label: 'News', nav: 'News', jp: 'お知らせ' },
   { id: 'concept', label: 'Concept', nav: 'Concept', jp: 'こだわり' },
   { id: 'products', label: 'Products', nav: 'Products', jp: 'お品書き' },
   { id: 'store', label: 'Store', nav: 'Store', jp: '總本鋪' },

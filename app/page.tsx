@@ -1,6 +1,7 @@
 import { AccessSection } from '@/components/site/access-section'
 import { ConceptSection } from '@/components/site/concept-section'
 import { IntroSection } from '@/components/site/intro-section'
+import { NewsSection } from '@/components/site/news-section'
 import { ProductsSection } from '@/components/site/products-section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
@@ -12,6 +13,7 @@ export default function Page() {
       <SiteHeader />
       <main>
         <IntroSection />
+        <NewsSection />
         <ConceptSection />
         <ProductsSection />
         <StoreSection />

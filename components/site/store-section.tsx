@@ -29,6 +29,11 @@ export function StoreSection() {
               lines={['深川不動堂と富岡八幡宮の参道。', '毎朝、店内で生地を焼いています。']}
               className="font-mincho text-base text-paper md:text-lg"
             />
+            <Reveal delay={300}>
+              <p className="font-mincho text-[14px] leading-[2.2] tracking-[0.08em] text-mute">
+                2022年6月、門前仲町に開いた總本鋪。東京メトロ東西線「門前仲町駅」から徒歩1分、三菱UFJ銀行ビルの裏の路地に、白い暖簾が目印の小さな店を構えています。窓越しに銅板で焼く様子が見え、店先には焼きたての香り。参拝の帰りや、ちょっとした手みやげに立ち寄っていただける店でありたいと思っています。
+              </p>
+            </Reveal>
             <Reveal delay={500}>
               <ul className="flex flex-col gap-3 text-[12px] tracking-[0.1em] text-mute">
                 <li className="flex items-center gap-3">

@@ -34,7 +34,13 @@ export function AccessSection() {
           ]}
         />
 
-        <div className="mt-20 grid gap-16 md:grid-cols-2 md:gap-16">
+        <Reveal className="mt-16 max-w-3xl">
+          <p className="font-mincho text-[14px] leading-[2.2] tracking-[0.08em] text-mute md:text-[15px]">
+            毎日10時から16時まで、年中無休で営業しています。毎朝焼いた分がなくなり次第終了となりますので、確実にお求めになりたい方はご予約が便利です。ご予約はテイクイーツから、翌日以降のお受け取り分を5個から、30日先まで承ります（お受け取りは10:30〜15:45）。お支払いはオンライン決済のほか店頭でも可能で、店頭ではクレジットカードと交通系ICがご利用いただけます。
+          </p>
+        </Reveal>
+
+        <div className="mt-16 grid gap-16 md:grid-cols-2 md:gap-16">
           <Reveal>
             <dl className="border-t border-paper/10 text-[13px] tracking-[0.08em]">
               {INFO.map(([term, value]) => (
