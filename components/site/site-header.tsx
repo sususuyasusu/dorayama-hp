@@ -84,12 +84,12 @@ export function SiteHeader() {
             blurred ? 'border-transparent opacity-100' : 'border-transparent opacity-0',
           )}
         />
-        <div className="relative flex h-14 items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-16 md:px-10 lg:h-20 lg:px-14 2xl:h-24 2xl:px-20">
+        <div className="relative flex h-[38px] items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-[43px] md:px-10 lg:h-[53px] lg:px-14 2xl:h-16 2xl:px-20">
           <a href="#intro" onClick={() => setOpen(false)} aria-label="門仲どらやき どら山 トップへ" className="block">
             {/* logo drawn in the current text colour (white over video, green on washi) */}
             <span
               aria-hidden="true"
-              className="block h-[26px] w-[44px] bg-current transition-colors duration-500 md:h-[30px] md:w-[51px] lg:h-[38px] lg:w-[65px] 2xl:h-[46px] 2xl:w-[78px]"
+              className="block h-[22px] w-[38px] bg-current transition-colors duration-500 md:h-[24px] md:w-[41px] lg:h-[30px] lg:w-[51px] 2xl:h-[36px] 2xl:w-[61px]"
               style={{
                 maskImage: 'url(images/logo-mark.png)',
                 WebkitMaskImage: 'url(images/logo-mark.png)',
@@ -101,6 +101,7 @@ export function SiteHeader() {
             />
           </a>
 
+        <div className="flex items-center gap-3 lg:gap-5 2xl:gap-6">
         {/* the menu is always behind the hamburger, on every screen size */}
         <button
           type="button"
@@ -108,24 +109,35 @@ export function SiteHeader() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'メニューを閉じる' : 'メニューを開く'}
-          className="relative flex size-10 items-center justify-center lg:size-12 2xl:size-14"
+          className="relative flex size-8 items-center justify-center lg:size-10 2xl:size-12"
         >
           {/* three thin lines cross-fade into a thin × */}
           <svg
             aria-hidden="true"
             viewBox="0 0 20 20"
-            className={cn('absolute size-5 lg:size-7 2xl:size-8 transition-[opacity,visibility] duration-500', open ? 'invisible opacity-0' : 'opacity-100')}
+            className={cn('absolute size-5 lg:size-6 2xl:size-7 transition-[opacity,visibility] duration-500', open ? 'invisible opacity-0' : 'opacity-100')}
           >
             <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1" fill="none" />
           </svg>
           <svg
             aria-hidden="true"
             viewBox="0 0 20 20"
-            className={cn('absolute size-5 lg:size-7 2xl:size-8 transition-[opacity,visibility] duration-500', open ? 'opacity-100' : 'invisible opacity-0')}
+            className={cn('absolute size-5 lg:size-6 2xl:size-7 transition-[opacity,visibility] duration-500', open ? 'opacity-100' : 'invisible opacity-0')}
           >
             <path d="M15.5 4.5l-11 11M15.5 15.5l-11-11" stroke="currentColor" strokeWidth="1" fill="none" />
           </svg>
         </button>
+        {/* reservation pill to the right of the hamburger; follows the ink colour */}
+        <a
+          href={RESERVE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-[26px] items-center whitespace-nowrap rounded-full border border-current px-3.5 text-[11px] tracking-[0.15em] transition-colors duration-500 hover:bg-current/10 lg:h-[34px] lg:px-5 lg:text-[13px] 2xl:h-10 2xl:px-6 2xl:text-[14px]"
+        >
+          ご予約
+          <span className="sr-only">（新しいタブで開きます）</span>
+        </a>
+        </div>
         </div>
       </div>
 
