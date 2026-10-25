@@ -16,7 +16,7 @@ export function IntroSection() {
           eager
           className="absolute inset-0 h-full w-full"
         />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-black/45" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#0a1d12]/50" />
         <Reveal delay={1400} className="absolute inset-0 flex items-center justify-center">
           <LogoMark size={128} />
         </Reveal>

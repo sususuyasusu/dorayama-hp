@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Noto_Sans_JP, Shippori_Mincho } from 'next/font/google'
+import { SmoothScroll } from '@/components/site/smooth-scroll'
 import './globals.css'
 
 const mincho = Shippori_Mincho({
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#121212',
+  themeColor: '#12301f',
   colorScheme: 'dark',
   width: 'device-width',
   initialScale: 1,
@@ -57,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${mincho.variable} ${notoSans.variable} ${inter.variable}`}>
       <body className="antialiased">
+        <SmoothScroll />
         {children}
       </body>
     </html>

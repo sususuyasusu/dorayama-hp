@@ -12,7 +12,7 @@ if [[ ! -d .git ]]; then
   printf "\nnode_modules/\n.next/\nout/\n_preview/\n" >> .gitignore
 fi
 git add -A
-git commit -qm "どら山HP 更新 $(date "+%Y-%m-%d %H:%M")" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" || true
+git commit -qm "背景を深緑に・慣性スクロール追加" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" || true
 if ! gh repo view $REPO >/dev/null 2>&1; then
   gh repo create $REPO --public --description "門仲どらやき どら山 公式HP" --source . --push -r origin >/dev/null
 else

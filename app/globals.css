@@ -2,11 +2,11 @@
 @import 'tw-animate-css';
 
 @theme inline {
-  --color-ink: #121212;
+  --color-ink: #12301f;
   --color-paper: #edeae4;
-  --color-mute: #9a958c;
+  --color-mute: #a3ad9f;
   --color-copper: #b87333;
-  --color-background: #121212;
+  --color-background: #12301f;
   --color-foreground: #edeae4;
   --color-border: rgb(237 234 228 / 0.12);
   --color-ring: #b87333;
@@ -21,13 +21,25 @@
   }
 
   html {
-    background: #121212;
+    background: #12301f;
     color-scheme: dark;
     scroll-behavior: smooth;
   }
 
+  /* inertia scrolling (lenis) takes over smooth scrolling */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
   body {
-    background: #121212;
+    background: #12301f;
     color: #edeae4;
     font-family: var(--font-sans);
     font-weight: 300;
@@ -66,5 +78,5 @@
 }
 
 @utility img-frame {
-  background: linear-gradient(160deg, #1a1612 0%, #0e0d0c 100%);
+  background: linear-gradient(160deg, #1a3d29 0%, #0c2216 100%);
 }
