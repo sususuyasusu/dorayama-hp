@@ -1,0 +1,56 @@
+import { Reveal, RevealLines } from './reveal'
+import { SmartImage } from './smart-image'
+
+export function StoreSection() {
+  return (
+    <section id="store" aria-labelledby="store-heading" className="px-4 py-32 md:px-10 md:py-48">
+      <div className="mx-auto max-w-6xl">
+        <Reveal className="mb-8 flex items-center gap-4">
+          <span aria-hidden="true" className="h-px w-10 bg-copper" />
+          <span className="text-[12px] tracking-[0.2em] text-mute">Store</span>
+        </Reveal>
+        <Reveal as="h2" delay={150} className="font-mincho text-2xl text-paper md:text-3xl">
+          <span id="store-heading">總本鋪</span>
+        </Reveal>
+
+        <div className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-12 md:gap-8">
+          <SmartImage
+            src="images/20.jpg"
+            alt="のれんの掛かった、どら山 總本鋪の外観"
+            parallax={0.05}
+            className="col-span-2 aspect-[4/3] md:col-span-7 md:aspect-[4/5]"
+          />
+          <div className="col-span-2 flex flex-col justify-end gap-10 md:col-span-4 md:col-start-9 md:pb-10">
+            <RevealLines
+              lines={['深川不動堂と富岡八幡宮の参道。', '毎朝、店内で生地を焼いています。']}
+              className="font-mincho text-base text-paper md:text-lg"
+            />
+            <Reveal delay={500}>
+              <ul className="flex flex-col gap-3 text-[12px] tracking-[0.1em] text-mute">
+                <li className="flex items-center gap-3">
+                  <span aria-hidden="true" className="size-1 shrink-0 rounded-full bg-copper" />
+                  テレビ朝日「じゅん散歩」で紹介
+                </li>
+                <li className="flex items-center gap-3">
+                  <span aria-hidden="true" className="size-1 shrink-0 rounded-full bg-copper" />
+                  富岡八幡宮へ定期奉納
+                </li>
+              </ul>
+            </Reveal>
+          </div>
+          <SmartImage
+            src="images/22.jpg"
+            alt="どらやきが並ぶ店内の棚"
+            className="mt-12 aspect-[3/4] md:col-span-4 md:col-start-2 md:mt-24"
+          />
+          <SmartImage
+            src="images/52.jpg"
+            alt="ギフト用の箱と紙袋"
+            parallax={0.05}
+            className="mt-28 aspect-[3/4] md:col-span-5 md:col-start-7 md:mt-48"
+          />
+        </div>
+      </div>
+    </section>
+  )
+}

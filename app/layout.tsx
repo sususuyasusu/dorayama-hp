@@ -1,0 +1,64 @@
+import type { Metadata, Viewport } from 'next'
+import { Inter, Noto_Sans_JP, Shippori_Mincho } from 'next/font/google'
+import './globals.css'
+
+const mincho = Shippori_Mincho({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-mincho',
+  display: 'swap',
+  preload: false,
+})
+
+const notoSans = Noto_Sans_JP({
+  weight: ['300', '400'],
+  subsets: ['latin'],
+  variable: '--font-noto-sans',
+  display: 'swap',
+  preload: false,
+})
+
+const inter = Inter({
+  weight: ['300', '400'],
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  title: '門仲どらやき どら山 總本鋪 | DORAYAMA',
+  description:
+    '門前仲町、深川不動堂と富岡八幡宮の参道にあるどらやき専門店。毎朝、店頭の銅板で一枚ずつ手焼きする、ふかふかの「おふとん生地」と塩入りつぶあん。',
+  generator: 'v0.app',
+  openGraph: {
+    title: '門仲どらやき どら山 總本鋪',
+    description: '毎朝、銅板で一枚ずつ。門前仲町のどらやき専門店。',
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    apple: '/apple-icon.png',
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#121212',
+  colorScheme: 'dark',
+  width: 'device-width',
+  initialScale: 1,
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="ja" className={`${mincho.variable} ${notoSans.variable} ${inter.variable}`}>
+      <body className="antialiased">
+        {children}
+      </body>
+    </html>
+  )
+}

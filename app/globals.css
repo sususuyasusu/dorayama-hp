@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme inline {
+  --color-ink: #121212;
+  --color-paper: #edeae4;
+  --color-mute: #9a958c;
+  --color-copper: #b87333;
+  --color-background: #121212;
+  --color-foreground: #edeae4;
+  --color-border: rgb(237 234 228 / 0.12);
+  --color-ring: #b87333;
+
+  --font-serif: var(--font-mincho), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-sans: var(--font-inter), var(--font-noto-sans), 'Hiragino Sans', sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    background: #121212;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #121212;
+    color: #edeae4;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgb(184 115 51 / 0.35);
+    color: #edeae4;
+  }
+
+  :focus-visible {
+    outline: 1px solid #b87333;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility font-mincho {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  line-height: 2.2;
+}
+
+@utility img-frame {
+  background: linear-gradient(160deg, #1a1612 0%, #0e0d0c 100%);
+}
