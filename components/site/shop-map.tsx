@@ -112,7 +112,9 @@ export function ShopMap({ className }: { className?: string }) {
         if (!map) return
         restyle(map)
         new maplibregl.Marker({ element: markerElement(), anchor: 'bottom' }).setLngLat(SHOP).addTo(map)
-        setReady(true)
+        // fade the map in only once the streets have actually been drawn, so a
+        // slow connection never shows the pin over an empty panel
+        map.once('idle', () => setReady(true))
       })
     })
     return () => {
