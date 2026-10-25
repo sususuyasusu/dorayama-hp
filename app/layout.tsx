@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Noto_Sans_JP, Shippori_Mincho } from 'next/font/google'
+import { Cormorant_Garamond, Inter, Noto_Sans_JP, Noto_Serif_JP, Shippori_Mincho } from 'next/font/google'
 import { Loader } from '@/components/site/loader'
 import { SmoothScroll } from '@/components/site/smooth-scroll'
 import './globals.css'
@@ -16,6 +16,23 @@ const notoSans = Noto_Sans_JP({
   weight: ['300', '400'],
   subsets: ['latin'],
   variable: '--font-noto-sans',
+  display: 'swap',
+  preload: false,
+})
+
+// sharp, hairline serif for the large English category titles
+const display = Cormorant_Garamond({
+  weight: '300',
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+// extra-light mincho for the small vertical category labels
+const hairline = Noto_Serif_JP({
+  weight: '200',
+  subsets: ['latin'],
+  variable: '--font-hairline',
   display: 'swap',
   preload: false,
 })
@@ -57,7 +74,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ja" className={`${mincho.variable} ${notoSans.variable} ${inter.variable}`}>
+    <html
+      lang="ja"
+      className={`${mincho.variable} ${notoSans.variable} ${inter.variable} ${display.variable} ${hairline.variable}`}
+    >
       <body
         className="antialiased"
         style={{ backgroundImage: 'url(images/grain.png)', backgroundBlendMode: 'overlay' }}

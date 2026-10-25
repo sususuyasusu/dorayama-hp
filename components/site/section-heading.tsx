@@ -34,8 +34,8 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
   return (
     <div ref={ref} className={cn('flex items-start gap-6 md:gap-16', className)}>
       <span
-        className="font-mincho mt-2 shrink-0 border border-paper/40 px-[7px] py-3 text-[12px] leading-[1.5] tracking-[0.2em] text-paper"
-        style={fade(0, { writingMode: 'vertical-rl' })}
+        className="mt-3 shrink-0 border-[0.5px] border-paper/50 px-[7px] py-3 text-[13px] font-extralight leading-[1.5] tracking-[0.25em] text-paper"
+        style={fade(0, { writingMode: 'vertical-rl', fontFamily: 'var(--font-hairline), serif' })}
       >
         {jp}
       </span>
@@ -43,8 +43,11 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
       <div className="min-w-0 flex-1">
         <h2
           id={id}
-          className="font-mincho text-[clamp(44px,8vw,96px)] font-normal leading-none tracking-[0.01em] text-paper"
-          style={fade(150, { filter: shown ? 'blur(0)' : 'blur(10px)' })}
+          className="text-[clamp(56px,9.5vw,120px)] font-light leading-[0.9] tracking-[-0.01em] text-paper"
+          style={fade(150, {
+            fontFamily: 'var(--font-display), serif',
+            filter: shown ? 'blur(0)' : 'blur(10px)',
+          })}
         >
           {en}
         </h2>
