@@ -69,8 +69,8 @@ export function IntroSection() {
           <div
             className="absolute inset-0"
             style={{
-              transform: 'translateY(calc(min(var(--p), 0.22) / 0.22 * -42svh)) scale(calc(1 - min(var(--p), 0.22) / 0.22 * 0.35))',
-              opacity: 'calc(1 - max(0, var(--p) - 0.14) / 0.1)',
+              // same size and fully visible; it simply travels up and off the top
+              transform: 'translateY(calc(min(var(--p), 0.3) / 0.3 * -80svh))',
             }}
           >
             <HeroLogo />
