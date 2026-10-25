@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { LogoMark } from './logo-mark'
 import { loaderDone } from './loader'
 
 // Centre mark over the opening video; it surfaces once the loader has lifted.
@@ -34,7 +33,22 @@ export function HeroLogo() {
         transition: 'opacity 1.6s cubic-bezier(0.43, 0.05, 0.17, 1), filter 1.6s cubic-bezier(0.43, 0.05, 0.17, 1)',
       }}
     >
-      <LogoMark size={128} />
+      {/* hero mark (aikon.svg) drawn in the paper colour over the video */}
+      <span
+        role="img"
+        aria-label="どら山"
+        className="block aspect-[123.3/133.3] w-[88px] bg-paper md:w-[112px]"
+        style={{
+          maskImage: 'url(images/hero-mark.svg)',
+          WebkitMaskImage: 'url(images/hero-mark.svg)',
+          maskSize: 'contain',
+          WebkitMaskSize: 'contain',
+          maskRepeat: 'no-repeat',
+          WebkitMaskRepeat: 'no-repeat',
+          maskPosition: 'center',
+          WebkitMaskPosition: 'center',
+        }}
+      />
     </div>
   )
 }
