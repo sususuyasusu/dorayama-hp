@@ -5,6 +5,7 @@ import { RESERVE_URL } from '@/lib/site'
 import { CrossfadeImage } from './crossfade-image'
 import { PillLink } from './pill-link'
 import { Reveal } from './reveal'
+import { SectionHeading } from './section-heading'
 import { SmartImage } from './smart-image'
 
 type Product = {
@@ -148,15 +149,14 @@ export function ProductsSection() {
             onFocus={handleFocus}
             className="flex flex-col gap-24 px-4 py-24 will-change-transform md:w-max md:flex-row md:items-end md:gap-[8vw] md:px-[8vw] md:py-0 md:pt-16"
           >
-            <div className="flex shrink-0 flex-col justify-end md:w-[22rem] md:pb-24">
-              <Reveal className="mb-8 flex items-center gap-4">
-                <span aria-hidden="true" className="h-px w-10 bg-copper" />
-                <span className="text-[12px] tracking-[0.2em] text-mute">Products</span>
-              </Reveal>
-              <Reveal as="h2" delay={150} className="font-mincho text-2xl text-paper md:text-3xl">
-                <span id="products-heading">おしながき</span>
-              </Reveal>
-              <Reveal delay={300} className="mt-6 text-[13px] leading-loose tracking-[0.08em] text-mute">
+            <div className="flex shrink-0 flex-col justify-end md:w-[30rem] md:pb-24">
+              <SectionHeading
+                id="products-heading"
+                jp="お品書き"
+                en="Products"
+                lead={['Skins baked fresh every morning,', 'with classic and seasonal fillings.']}
+              />
+              <Reveal delay={300} className="mt-10 text-[13px] leading-loose tracking-[0.08em] text-mute md:pl-[calc(2rem+4rem)]">
                 <p>毎朝焼き上げる皮に、季節ごとの餡を。ご予約は翌日以降、5個から承ります。</p>
               </Reveal>
             </div>

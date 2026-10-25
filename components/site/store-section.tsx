@@ -1,17 +1,21 @@
 import { Reveal, RevealLines } from './reveal'
+import { SectionHeading } from './section-heading'
 import { SmartImage } from './smart-image'
 
 export function StoreSection() {
   return (
     <section id="store" aria-labelledby="store-heading" className="px-4 py-32 md:px-10 md:py-48">
       <div className="mx-auto max-w-6xl">
-        <Reveal className="mb-8 flex items-center gap-4">
-          <span aria-hidden="true" className="h-px w-10 bg-copper" />
-          <span className="text-[12px] tracking-[0.2em] text-mute">Store</span>
-        </Reveal>
-        <Reveal as="h2" delay={150} className="font-mincho text-2xl text-paper md:text-3xl">
-          <span id="store-heading">總本鋪</span>
-        </Reveal>
+        <SectionHeading
+          id="store-heading"
+          jp="總本鋪"
+          en="Store"
+          lead={[
+            'On the approach to Fukagawa Fudodo and Tomioka Hachimangu,',
+            'the batter is baked fresh in the shop every morning.',
+          ]}
+          catchCopy={['参道の', '焼きたてを']}
+        />
 
         <div className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-12 md:gap-8">
           <SmartImage

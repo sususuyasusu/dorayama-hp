@@ -1,5 +1,6 @@
 import { PillLink } from './pill-link'
 import { Reveal, RevealLines } from './reveal'
+import { SectionHeading } from './section-heading'
 import { SmartImage } from './smart-image'
 
 const POEM = ['富岡八幡宮奉納、', '毎朝、銅板で一枚ずつ。', 'また食べたくなる、', '毎日食べたくなる。']
@@ -21,9 +22,16 @@ const COMMITMENTS = [
 export function ConceptSection() {
   return (
     <section id="concept" aria-labelledby="concept-heading" className="px-4 py-32 md:px-10 md:py-48">
-      <h2 id="concept-heading" className="sr-only">
-        コンセプト
-      </h2>
+      <SectionHeading
+        id="concept-heading"
+        jp="こだわり"
+        en="Concept"
+        lead={[
+          'Each dorayaki is baked by hand on a copper griddle every morning,',
+          'and has long been offered to Tomioka Hachimangu Shrine.',
+        ]}
+        className="mx-auto mb-24 max-w-6xl md:mb-32"
+      />
 
       <div className="mx-auto grid max-w-6xl items-center gap-20 md:grid-cols-2 md:gap-16">
         <SmartImage

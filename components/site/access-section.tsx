@@ -1,6 +1,7 @@
 import { INSTAGRAM_URL, RESERVE_URL } from '@/lib/site'
 import { PillLink } from './pill-link'
 import { Reveal } from './reveal'
+import { SectionHeading } from './section-heading'
 
 const ADDRESS = '東京都江東区門前仲町2丁目6-9 ひいらぎビル1F'
 
@@ -23,13 +24,15 @@ export function AccessSection() {
   return (
     <section id="access" aria-labelledby="access-heading" className="px-4 py-32 md:px-10 md:py-48">
       <div className="mx-auto max-w-6xl">
-        <Reveal className="mb-8 flex items-center gap-4">
-          <span aria-hidden="true" className="h-px w-10 bg-copper" />
-          <span className="text-[12px] tracking-[0.2em] text-mute">Access</span>
-        </Reveal>
-        <Reveal as="h2" delay={150} className="font-mincho text-2xl text-paper md:text-3xl">
-          <span id="access-heading">店舗情報</span>
-        </Reveal>
+        <SectionHeading
+          id="access-heading"
+          jp="店舗情報"
+          en="Access"
+          lead={[
+            'A one-minute walk from Monzen-nakacho Station,',
+            'open every day from 10:00 until sold out.',
+          ]}
+        />
 
         <div className="mt-20 grid gap-16 md:grid-cols-2 md:gap-16">
           <Reveal>
