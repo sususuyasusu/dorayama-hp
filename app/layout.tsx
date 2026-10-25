@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Noto_Serif_JP, Shippori_Mincho } from 'next/font/google'
 import { Loader } from '@/components/site/loader'
 import { SmoothScroll } from '@/components/site/smooth-scroll'
+import { ViewportFade } from '@/components/site/viewport-fade'
 import './globals.css'
 
 const mincho = Shippori_Mincho({
@@ -69,20 +70,8 @@ export default function RootLayout({
       >
         <Loader />
         <SmoothScroll />
+        <ViewportFade />
         {children}
-        {/* the bottom of the screen always melts into the textured green, so
-            photos and text fade out as they scroll past the lower edge */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-[24svh] md:h-[20vh]"
-          style={{
-            backgroundColor: '#12301f',
-            backgroundImage: 'url(images/grain.png)',
-            backgroundBlendMode: 'overlay',
-            maskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.85) 22%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.85) 22%, transparent 100%)',
-          }}
-        />
       </body>
     </html>
   )

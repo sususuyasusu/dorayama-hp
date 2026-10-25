@@ -83,6 +83,13 @@
   background: linear-gradient(160deg, #1a3d29 0%, #0c2216 100%);
 }
 
+/* content fades to transparent toward the bottom of the screen
+   (positions are kept in sync with the viewport by ViewportFade) */
+main.viewport-fade {
+  -webkit-mask-image: linear-gradient(to bottom, #000 var(--fade-start, 100vh), transparent var(--fade-end, 100vh));
+  mask-image: linear-gradient(to bottom, #000 var(--fade-start, 100vh), transparent var(--fade-end, 100vh));
+}
+
 /* opening loader: progress line and logo fade-in */
 .loader-bar {
   scale: 0 1;

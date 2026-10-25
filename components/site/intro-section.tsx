@@ -1,3 +1,4 @@
+import { HeroLogo } from './hero-logo'
 import { HeroVideo } from './hero-video'
 import { LogoMark } from './logo-mark'
 import { Reveal } from './reveal'
@@ -21,6 +22,8 @@ export function IntroSection() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a1d12]/60 to-transparent"
         />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#0a1d12]/25" />
+        <HeroLogo />
       </div>
 
       <div className="flex min-h-svh flex-col items-center justify-center gap-12 px-4 pb-16 pt-24">
