@@ -6,7 +6,7 @@ import { ViewportFade } from '@/components/site/viewport-fade'
 import './globals.css'
 
 const mincho = Shippori_Mincho({
-  weight: '400',
+  weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-mincho',
   display: 'swap',

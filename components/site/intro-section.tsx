@@ -2,7 +2,6 @@ import { HeroLogo } from './hero-logo'
 import { HeroVideo } from './hero-video'
 import { IntroProgress } from './intro-progress'
 import { Reveal } from './reveal'
-import { SmartImage } from './smart-image'
 
 const COPY = [
   '深川不動堂と富岡八幡宮の参道、',
@@ -12,22 +11,6 @@ const COPY = [
   '十勝の小豆を炊いた、塩入りのつぶあん。',
   '富岡八幡宮に奉納する、縁起の良い門仲どらやき。',
   'また食べたくなる、毎日食べたくなる。',
-]
-
-// mobile: 6 columns / desktop: 12 columns, offsets give the scattered feel
-const GALLERY = [
-  { src: 'images/01.jpg', alt: '銅鍋の横で、銅板に生地を流す手元', cls: 'col-span-4 col-start-1 aspect-[4/3] md:col-span-4 md:col-start-1', px: 0.05 },
-  { src: 'images/10.jpg', alt: '断面を見せた黑どら', cls: 'col-span-3 col-start-4 mt-16 aspect-[3/4] md:col-span-3 md:col-start-7 md:mt-40', px: 0.1 },
-  { src: 'images/03.jpg', alt: '銅板の上に並ぶ、焼き色のついた皮', cls: 'col-span-3 col-start-1 mt-10 aspect-square md:col-span-2 md:col-start-11 md:-mt-10', px: 0.03 },
-  { src: 'images/13.jpg', alt: '小豆の器と、つぶあんのどらやき', cls: 'col-span-4 col-start-3 mt-10 aspect-[4/3] md:col-span-4 md:col-start-3 md:mt-24', px: 0.07 },
-  { src: 'images/30.jpg', alt: '焼き上がった皮を返す職人の手元', cls: 'col-span-3 col-start-1 mt-10 aspect-[3/4] md:col-span-3 md:col-start-9 md:mt-56', px: 0.12 },
-  { src: 'images/15.jpg', alt: '緑の個包装を手にしたところ', cls: 'col-span-3 col-start-4 mt-24 aspect-[3/4] md:col-span-2 md:col-start-1 md:mt-12', px: 0.04 },
-  { src: 'images/12.jpg', alt: 'ふかふかの生地とつぶあんの断面', cls: 'col-span-5 col-start-2 mt-10 aspect-[4/3] md:col-span-4 md:col-start-5 md:mt-32', px: 0.09 },
-  { src: 'images/21.jpg', alt: '白い暖簾の掛かった、どら山の店先', cls: 'col-span-3 col-start-1 mt-10 aspect-[3/4] md:col-span-3 md:col-start-10 md:-mt-6', px: 0.05 },
-  { src: 'images/31.jpg', alt: '銅板に生地を流す瞬間', cls: 'col-span-3 col-start-4 mt-20 aspect-square md:col-span-3 md:col-start-2 md:mt-36', px: 0.11 },
-  { src: 'images/11.jpg', alt: '白あんの白どら', cls: 'col-span-4 col-start-1 mt-10 aspect-[4/3] md:col-span-3 md:col-start-6 md:mt-20', px: 0.06 },
-  { src: 'images/22.jpg', alt: '店内の棚に並ぶどらやき', cls: 'col-span-3 col-start-4 mt-10 aspect-[3/4] md:col-span-2 md:col-start-10 md:mt-48', px: 0.08 },
-  { src: 'images/50.jpg', alt: '季節の旬どら、かぼちゃのどらやき', cls: 'col-span-4 col-start-2 mt-16 aspect-[4/3] md:col-span-4 md:col-start-4 md:mt-28', px: 0.04 },
 ]
 
 export function IntroSection() {
@@ -99,13 +82,8 @@ export function IntroSection() {
           </p>
         </div>
       </IntroProgress>
-
-      {/* starts while the video is still melting away, so no empty screen */}
-      <div aria-label="どら山の写真" className="relative z-10 mx-auto -mt-[55svh] grid max-w-7xl grid-cols-6 gap-x-4 px-4 pb-40 md:grid-cols-12 md:gap-x-8 md:px-10 md:pb-56">
-        {GALLERY.map((g) => (
-          <SmartImage key={g.src} src={g.src} alt={g.alt} parallax={g.px} className={`w-full ${g.cls}`} />
-        ))}
-      </div>
+      {/* the next section starts while the video is still melting away */}
+      <div aria-hidden="true" className="-mt-[45svh]" />
     </>
   )
 }
