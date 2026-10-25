@@ -1,3 +1,4 @@
+import { HeroVideo } from './hero-video'
 import { LogoMark } from './logo-mark'
 import { Reveal } from './reveal'
 import { SmartImage } from './smart-image'
@@ -10,16 +11,16 @@ export function IntroSection() {
       </h1>
 
       <div className="relative h-svh w-full">
-        <SmartImage
-          src="images/03.jpg"
-          alt="銅板の上に並ぶ、焼き色のついたどらやきの皮"
-          eager
+        <HeroVideo
+          src="video/top.mp4"
+          poster="video/top-poster.jpg"
+          label="どら山の店先と、銅板でどらやきを焼く様子"
           className="absolute inset-0 h-full w-full"
         />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#0a1d12]/50" />
-        <Reveal delay={1400} className="absolute inset-0 flex items-center justify-center">
-          <LogoMark size={128} />
-        </Reveal>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0a1d12]/60 to-transparent"
+        />
       </div>
 
       <div className="flex min-h-svh flex-col items-center justify-center gap-12 px-4 pb-16 pt-24">

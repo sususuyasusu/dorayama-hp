@@ -93,7 +93,7 @@ export type Liquid = {
 
 export function createLiquid(
   canvas: HTMLCanvasElement,
-  src: string,
+  src: string | HTMLVideoElement,
   state: { revealStart: number | null },
   onFail: () => void,
 ): Liquid | null {
@@ -139,23 +139,47 @@ export function createLiquid(
   let dead = false
   const t0 = performance.now()
 
-  const img = new Image()
-  img.decoding = 'async'
-  img.onload = () => {
-    if (dead) return
-    imgAspect = img.naturalWidth / img.naturalHeight
+  const upload = (source: TexImageSource) => {
     gl.bindTexture(gl.TEXTURE_2D, tex)
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img)
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source)
+  }
+  const initTexture = () => {
+    gl.bindTexture(gl.TEXTURE_2D, tex)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
-    loaded = true
-    if (running) loop()
   }
-  img.onerror = onFail
-  img.src = src
+
+  // a playing <video> is re-uploaded every frame; an image once
+  const video = typeof src === 'string' ? null : src
+  if (video) {
+    const ready = () => {
+      if (dead || loaded || video.readyState < 2) return
+      imgAspect = video.videoWidth / video.videoHeight
+      initTexture()
+      upload(video)
+      loaded = true
+      if (running) loop()
+    }
+    video.addEventListener('loadeddata', ready)
+    video.addEventListener('error', onFail)
+    ready()
+  } else {
+    const img = new Image()
+    img.decoding = 'async'
+    img.onload = () => {
+      if (dead) return
+      imgAspect = img.naturalWidth / img.naturalHeight
+      initTexture()
+      upload(img)
+      loaded = true
+      if (running) loop()
+    }
+    img.onerror = onFail
+    img.src = src as string
+  }
 
   const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -177,6 +201,7 @@ export function createLiquid(
     const p = Math.min((now - state.revealStart) / REVEAL_MS, 1)
     const eased = 1 - Math.pow(1 - p, 3)
     const amp = REVEAL_AMP * (1 - eased) + Math.min(velocity * SCROLL_AMP, MAX_SCROLL_AMP)
+    if (video && video.readyState >= 2) upload(video)
     gl.uniform1f(uTime, (now - t0) / 1000)
     gl.uniform1f(uReveal, eased)
     gl.uniform1f(uAmp, amp)
