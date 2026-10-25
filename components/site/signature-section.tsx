@@ -28,6 +28,7 @@ const ITEMS = [
   },
   {
     name: '黑どら',
+    product: true,
     image: 'images/72.jpg',
     alt: '断面を見せた、つぶあんの黑どら',
     copy: [
@@ -82,13 +83,15 @@ export function SignatureSection() {
                 </span>
               ))}
             </p>
-            <a
-              href="#products"
-              className="chotai font-mincho mt-[min(128px,18svh)] shrink-0 whitespace-nowrap text-[min(14px,2.6svh)] font-bold tracking-[0.2em] transition-opacity hover:opacity-70 md:mt-[min(224px,24svh)] md:text-[min(17px,2.7svh)]"
-              style={{ writingMode: 'vertical-rl' }}
-            >
-              （商品詳細）
-            </a>
+            {item.product && (
+              <a
+                href="#products"
+                className="chotai font-mincho mt-[min(128px,18svh)] shrink-0 whitespace-nowrap text-[min(14px,2.6svh)] font-bold tracking-[0.2em] transition-opacity hover:opacity-70 md:mt-[min(224px,24svh)] md:text-[min(17px,2.7svh)]"
+                style={{ writingMode: 'vertical-rl' }}
+              >
+                （商品詳細）
+              </a>
+            )}
           </div>
         </WindowPanel>
       ))}
