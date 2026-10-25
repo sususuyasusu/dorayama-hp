@@ -90,6 +90,24 @@ main.viewport-fade {
   mask-image: linear-gradient(to bottom, #000 var(--fade-start, 100vh), transparent var(--fade-end, 100vh));
 }
 
+/* 長体80%: every text except body paragraphs is condensed horizontally.
+   Headings, table cells and dates get it automatically; other labels opt in
+   with .chotai (anchored left) or .chotai-r (anchored right). Vertical text
+   is condensed around its centre so its column stays in place. */
+h1, h2, h3, h4, dt, dd, time, .chotai, .chotai-r {
+  transform: scaleX(0.8);
+  transform-origin: left center;
+}
+time {
+  display: inline-block;
+}
+.chotai-r {
+  transform-origin: right center;
+}
+:is(h1, h2, h3, h4, time, .chotai)[style*="vertical"] {
+  transform-origin: center;
+}
+
 /* shop map: quiet controls and credits that match the green page */
 .shop-map .maplibregl-ctrl-group {
   background: rgb(235 231 223 / 0.9);

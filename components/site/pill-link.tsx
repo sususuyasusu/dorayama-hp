@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 export const pillClass =
-  'inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full border border-paper/80 px-6 text-[12px] font-light tracking-[0.15em] text-paper transition-colors duration-500 hover:bg-paper/10 active:bg-paper/15'
+  'chotai inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full border border-paper/80 px-6 text-[12px] font-light tracking-[0.15em] text-paper transition-colors duration-500 hover:bg-paper/10 active:bg-paper/15'
 
 type PillLinkProps = {
   href: string

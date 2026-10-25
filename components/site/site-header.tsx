@@ -132,7 +132,7 @@ export function SiteHeader() {
           href={RESERVE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-[26px] items-center whitespace-nowrap rounded-full border border-current px-3.5 text-[11px] tracking-[0.15em] transition-colors duration-500 hover:bg-current/10 lg:h-[34px] lg:px-5 lg:text-[13px] 2xl:h-10 2xl:px-6 2xl:text-[14px]"
+          className="chotai-r inline-flex h-[26px] items-center whitespace-nowrap rounded-full border border-current px-3.5 text-[11px] tracking-[0.15em] transition-colors duration-500 hover:bg-current/10 lg:h-[34px] lg:px-5 lg:text-[13px] 2xl:h-10 2xl:px-6 2xl:text-[14px]"
         >
           ご予約
           <span className="sr-only">（新しいタブで開きます）</span>
@@ -158,7 +158,7 @@ export function SiteHeader() {
       >
         <div className="px-5 pb-16 pt-[calc(3.5rem+16vh)] text-[#12301f] md:px-10 md:pt-[calc(4rem+18vh)] lg:px-14 2xl:px-20">
           <nav aria-label="モバイルナビゲーション">
-            <ul className="flex flex-col gap-3">
+            <ul className="chotai flex flex-col gap-3">
               {SECTIONS.map((s, i) => (
                 <li
                   key={s.id}
@@ -186,7 +186,7 @@ export function SiteHeader() {
           </nav>
 
           <ul
-            className="mt-14 flex flex-col gap-3 text-[13px] tracking-[0.1em] transition-opacity duration-700 ease-out"
+            className="chotai mt-14 flex flex-col gap-3 text-[13px] tracking-[0.1em] transition-opacity duration-700 ease-out"
             style={{ opacity: open ? 1 : 0, transitionDelay: open ? '500ms' : '0ms' }}
           >
             <li>

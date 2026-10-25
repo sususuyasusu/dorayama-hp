@@ -65,25 +65,25 @@ export function SignatureSection() {
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 right-0 w-full bg-gradient-to-l from-[#0a1d12]/75 via-[#0a1d12]/40 to-transparent md:w-3/5"
           />
-          <div className="absolute inset-0 flex flex-row-reverse items-start gap-6 px-6 pt-[12svh] text-paper md:gap-10 md:px-[12vw] md:pt-[18svh]">
+          <div className="absolute inset-0 flex flex-row-reverse items-start gap-6 px-6 pt-[min(12svh,96px)] text-paper md:gap-10 md:px-[12vw] md:pt-[min(16svh,160px)]">
             <h3
-              className="font-mincho shrink-0 text-[30px] font-bold tracking-[0.15em] md:text-[40px]"
+              className="font-mincho shrink-0 whitespace-nowrap text-[min(30px,5.5svh)] font-bold tracking-[0.15em] md:text-[min(40px,6svh)]"
               style={{ writingMode: 'vertical-rl' }}
             >
               {item.name}
             </h3>
             <p
-              className="font-mincho mt-12 flex flex-row-reverse gap-2.5 text-[15px] leading-[1.9] tracking-[0.18em] md:mt-24 md:gap-5 md:text-[19px] md:tracking-[0.2em]"
+              className="font-mincho mt-[min(48px,6svh)] flex flex-row-reverse gap-2.5 text-[min(15px,2.7svh)] leading-[1.9] tracking-[0.18em] md:mt-[min(96px,9svh)] md:gap-5 md:text-[min(19px,2.9svh)] md:tracking-[0.2em]"
             >
               {item.copy.map((line) => (
-                <span key={line} className="block shrink-0" style={{ writingMode: 'vertical-rl' }}>
+                <span key={line} className="block shrink-0 whitespace-nowrap" style={{ writingMode: 'vertical-rl' }}>
                   {line}
                 </span>
               ))}
             </p>
             <a
               href="#products"
-              className="font-mincho mt-32 shrink-0 text-[14px] font-bold tracking-[0.2em] transition-opacity hover:opacity-70 md:mt-56 md:text-[17px]"
+              className="chotai font-mincho mt-[min(128px,18svh)] shrink-0 whitespace-nowrap text-[min(14px,2.6svh)] font-bold tracking-[0.2em] transition-opacity hover:opacity-70 md:mt-[min(224px,24svh)] md:text-[min(17px,2.7svh)]"
               style={{ writingMode: 'vertical-rl' }}
             >
               （商品詳細）

@@ -177,7 +177,7 @@ export function ProductsSection() {
 
       <div className="mx-auto max-w-4xl px-4 pb-32 pt-8 md:px-10 md:pb-48 md:pt-16">
         <Reveal>
-          <p className="text-[11px] tracking-[0.1em] text-mute">価格はすべて税込です。</p>
+          <p className="chotai text-[11px] tracking-[0.1em] text-mute">価格はすべて税込です。</p>
         </Reveal>
       </div>
     </section>
@@ -217,7 +217,7 @@ function ProductPanel({ product, index }: { product: Product; index: number }) {
         </div>
         <div className="flex items-center gap-6 pl-7 md:pl-0">
           {product.price && (
-            <p className="font-mincho text-lg leading-none text-paper tabular-nums" aria-label={`税込${product.price}円`}>
+            <p className="chotai font-mincho text-lg leading-none text-paper tabular-nums" aria-label={`税込${product.price}円`}>
               {product.price}
               <span className="ml-1 text-sm text-mute">圓</span>
             </p>

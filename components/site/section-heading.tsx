@@ -34,7 +34,7 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
   return (
     <div ref={ref} className={cn('flex items-start gap-6 md:gap-16', className)}>
       <span
-        className="mt-3 shrink-0 border-[0.5px] border-paper/50 px-[7px] py-3 text-[13px] font-extralight leading-[1.5] tracking-[0.25em] text-paper"
+        className="chotai mt-3 shrink-0 border-[0.5px] border-paper/50 px-[7px] py-3 text-[13px] font-extralight leading-[1.5] tracking-[0.25em] text-paper"
         style={fade(0, { writingMode: 'vertical-rl', fontFamily: 'var(--font-hairline), serif' })}
       >
         {jp}
@@ -52,7 +52,7 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
           {en}
         </h2>
         <p
-          className="mt-6 text-[14px] font-normal leading-[1.7] tracking-[0.04em] text-mute md:text-[15px]"
+          className="chotai mt-6 text-[14px] font-normal leading-[1.7] tracking-[0.04em] text-mute md:text-[15px]"
           style={fade(450, {
             fontFamily: 'var(--font-display), serif',
             translate: shown ? '0 0' : '0 8px',
@@ -72,7 +72,7 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
           style={fade(700)}
         >
           {catchCopy.map((col, i) => (
-            <span key={col} style={{ writingMode: 'vertical-rl', marginTop: i % 2 === 1 ? '2.5em' : 0 }}>
+            <span key={col} className="chotai" style={{ writingMode: 'vertical-rl', marginTop: i % 2 === 1 ? '2.5em' : 0 }}>
               {col}
             </span>
           ))}

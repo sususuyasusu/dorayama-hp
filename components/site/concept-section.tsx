@@ -52,7 +52,7 @@ export function ConceptSection() {
         <div className="flex flex-col items-start md:pl-10">
           <RevealLines
             lines={POEM}
-            className="font-mincho flex flex-col gap-6 text-base text-paper sm:text-xl lg:text-[26px]"
+            className="chotai font-mincho flex flex-col gap-6 text-base text-paper sm:text-xl lg:text-[26px]"
             lineClassName="md:[&:nth-child(2)]:pl-[1.5em] md:[&:nth-child(3)]:pl-[3em]"
             stagger={360}
           />

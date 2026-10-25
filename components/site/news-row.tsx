@@ -18,7 +18,7 @@ export function NewsRow({ item }: { item: NewsItem }) {
         loading="lazy"
         className="aspect-[4/3] w-28 shrink-0 rounded-[3px] object-cover transition-transform duration-700 group-hover:scale-[1.03] md:w-44"
       />
-      <p className="font-mincho flex-1 text-[14px] leading-[1.8] tracking-[0.06em] text-paper md:text-[17px]">{item.title}</p>
+      <p className="chotai font-mincho flex-1 text-[14px] leading-[1.8] tracking-[0.06em] text-paper md:text-[17px]">{item.title}</p>
       <span
         aria-hidden="true"
         className="flex size-5 shrink-0 items-center justify-center rounded-[3px] bg-paper text-[#12301f] transition-colors duration-500 group-hover:bg-[#12301f] group-hover:text-paper md:size-6"

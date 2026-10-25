@@ -36,11 +36,11 @@ export function StoreSection() {
             </Reveal>
             <Reveal delay={500}>
               <ul className="flex flex-col gap-3 text-[12px] tracking-[0.1em] text-mute">
-                <li className="flex items-center gap-3">
+                <li className="chotai flex items-center gap-3">
                   <span aria-hidden="true" className="size-1 shrink-0 rounded-full bg-copper" />
                   テレビ朝日「じゅん散歩」で紹介
                 </li>
-                <li className="flex items-center gap-3">
+                <li className="chotai flex items-center gap-3">
                   <span aria-hidden="true" className="size-1 shrink-0 rounded-full bg-copper" />
                   富岡八幡宮へ定期奉納
                 </li>

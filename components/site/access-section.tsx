@@ -72,7 +72,7 @@ export function AccessSection() {
               href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="self-end text-[12px] tracking-[0.1em] text-mute underline decoration-paper/30 underline-offset-4 transition-colors hover:text-paper"
+              className="chotai-r self-end text-[12px] tracking-[0.1em] text-mute underline decoration-paper/30 underline-offset-4 transition-colors hover:text-paper"
             >
               Googleマップで開く・経路を調べる
               <span className="sr-only">（新しいタブで開きます）</span>

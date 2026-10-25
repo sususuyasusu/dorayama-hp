@@ -25,7 +25,7 @@ export function NewsSection() {
         </ol>
 
         <div className="mt-12 flex justify-end">
-          <a href="news/" className="font-mincho group inline-flex items-center gap-10 border-b border-paper/40 pb-3 text-[14px] tracking-[0.2em] text-paper">
+          <a href="news/" className="chotai-r font-mincho group inline-flex items-center gap-10 border-b border-paper/40 pb-3 text-[14px] tracking-[0.2em] text-paper">
             お知らせ一覧
             <span aria-hidden="true" className="flex size-4 items-center justify-center rounded-full bg-copper transition-transform duration-500 group-hover:translate-x-0.5">
               <svg viewBox="0 0 10 10" className="size-2 fill-ink">
