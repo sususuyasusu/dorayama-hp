@@ -69,8 +69,6 @@ const PRODUCTS: Product[] = [
   },
 ]
 
-const DESKTOP_QUERY = '(min-width: 768px)'
-
 export function ProductsSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
@@ -82,24 +80,17 @@ export function ProductsSection() {
     const section = sectionRef.current
     const track = trackRef.current
     if (!section || !track) return
-    const mq = window.matchMedia(DESKTOP_QUERY)
     let raf = 0
 
+    // vertical scrolling drives the horizontal track on every screen size
     const update = () => {
       raf = 0
-      if (!mq.matches) return
       const rect = section.getBoundingClientRect()
       const scrollable = rect.height - window.innerHeight
       const progress = scrollable > 0 ? Math.min(Math.max(-rect.top / scrollable, 0), 1) : 0
       track.style.transform = `translate3d(${(-progress * distanceRef.current).toFixed(1)}px,0,0)`
     }
     const measure = () => {
-      if (!mq.matches) {
-        distanceRef.current = 0
-        track.style.transform = ''
-        setHeight(null)
-        return
-      }
       const distance = Math.max(track.scrollWidth - window.innerWidth, 0)
       distanceRef.current = distance
       setHeight(window.innerHeight + distance)
@@ -114,13 +105,11 @@ export function ProductsSection() {
     ro.observe(track)
     window.addEventListener('resize', measure)
     window.addEventListener('scroll', onScroll, { passive: true })
-    mq.addEventListener('change', measure)
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
       window.removeEventListener('resize', measure)
       window.removeEventListener('scroll', onScroll)
-      mq.removeEventListener('change', measure)
     }
   }, [])
 
@@ -128,7 +117,7 @@ export function ProductsSection() {
   const handleFocus = (e: FocusEvent<HTMLDivElement>) => {
     const section = sectionRef.current
     const sticky = stickyRef.current
-    if (!section || !sticky || !window.matchMedia(DESKTOP_QUERY).matches) return
+    if (!section || !sticky) return
     sticky.scrollLeft = 0
     const panel = (e.target as HTMLElement).closest<HTMLElement>('[data-panel]')
     if (!panel || !distanceRef.current) return
@@ -142,14 +131,14 @@ export function ProductsSection() {
       <div ref={sectionRef} style={{ height: height ?? undefined }} className="relative">
         <div
           ref={stickyRef}
-          className="md:sticky md:top-0 md:flex md:h-screen md:items-center md:overflow-hidden"
+          className="sticky top-0 flex h-svh items-center overflow-hidden md:h-screen"
         >
           <div
             ref={trackRef}
             onFocus={handleFocus}
-            className="flex flex-col gap-24 px-4 py-24 will-change-transform md:w-max md:flex-row md:items-end md:gap-[8vw] md:px-[8vw] md:py-0 md:pt-16"
+            className="flex w-max flex-row items-end gap-[12vw] px-[6vw] pt-16 will-change-transform md:gap-[8vw] md:px-[8vw]"
           >
-            <div className="flex shrink-0 flex-col justify-end md:w-[30rem] md:pb-24">
+            <div className="flex w-[86vw] shrink-0 flex-col justify-end pb-[12vh] md:w-[30rem] md:pb-24">
               <SectionHeading
                 id="products-heading"
                 jp="お品書き"
@@ -197,22 +186,18 @@ function ProductPanel({ product, index }: { product: Product; index: number }) {
     <article
       data-panel
       aria-labelledby={`product-${index}`}
-      className="flex shrink-0 flex-col gap-8 md:w-[min(56vw,calc(62vh*1.25))]"
+      className="flex w-[82vw] shrink-0 flex-col gap-6 md:w-[min(56vw,calc(62vh*1.25))] md:gap-8"
     >
       {product.gallery ? (
         <CrossfadeImage
           images={[product.image, ...product.gallery]}
           alt={product.alt}
-          className="aspect-[5/4] w-full md:aspect-auto md:h-[62vh]"
+          className="h-[46svh] w-full md:h-[62vh]"
         />
       ) : (
-        <SmartImage
-          src={product.image}
-          alt={product.alt}
-          className="aspect-[5/4] w-full md:aspect-auto md:h-[62vh]"
-        />
+        <SmartImage src={product.image} alt={product.alt} className="h-[46svh] w-full md:h-[62vh]" />
       )}
-      <div className="flex flex-wrap items-end justify-between gap-6 md:pb-24">
+      <div className="flex flex-wrap items-end justify-between gap-4 pb-[12vh] md:gap-6 md:pb-24">
         <div className="min-w-0">
           <h3 id={`product-${index}`} className="flex items-baseline gap-4 text-paper">
             <span className="text-[12px] text-copper tabular-nums" aria-hidden="true">
