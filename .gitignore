@@ -18,3 +18,4 @@ node_modules/
 .next/
 out/
 _preview/
+out_root/

@@ -14,7 +14,13 @@ export function generateStaticParams(): Params[] {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params
   const item = NEWS.find((n) => n.slug === slug)
-  return { title: item ? `${item.title} | お知らせ | 門仲どらやき どら山` : 'お知らせ | 門仲どらやき どら山' }
+  if (!item) return { title: 'お知らせ | 門仲どらやき どら山' }
+  return {
+    title: `${item.title} | お知らせ | 門仲どらやき どら山`,
+    description: item.body[0],
+    alternates: { canonical: `/news/${item.slug}/` },
+    openGraph: { title: item.title, description: item.body[0], images: [`/${item.image}`], type: 'article' },
+  }
 }
 
 // Article after hosa.nagoya news detail: date and title on the left,

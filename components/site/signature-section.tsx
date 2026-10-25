@@ -55,7 +55,7 @@ export function SignatureSection() {
           className="font-mincho text-[30px] font-bold tracking-[0.2em] text-paper md:text-[38px]"
           style={{ writingMode: 'vertical-rl' }}
         >
-          <span id="signature-heading">どらやき</span>
+          <span id="signature-heading">門仲どらやき</span>
         </Reveal>
       </div>
 

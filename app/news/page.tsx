@@ -9,6 +9,7 @@ import { NEWS } from '@/lib/news'
 export const metadata: Metadata = {
   title: 'お知らせ | 門仲どらやき どら山 總本鋪',
   description: '門仲どらやき どら山からのお知らせ。月替わりの旬どらや、メディア掲載などをご案内します。',
+  alternates: { canonical: '/news/' },
 }
 
 // News index after hosa.nagoya/news: heading with a photo, then a two-column

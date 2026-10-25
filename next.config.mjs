@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/dorayama-hp',
+  basePath: process.env.SITE_BASE ?? '/dorayama-hp',
   trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,
