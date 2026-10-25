@@ -70,7 +70,7 @@ function markerElement() {
   const el = document.createElement('div')
   el.setAttribute('aria-label', '門仲どらやき どら山 總本鋪')
   el.innerHTML = `
-    <div style="position:relative;display:flex;flex-direction:column;align-items:center;transform:translateY(-50%)">
+    <div style="position:relative;display:flex;flex-direction:column;align-items:center">
       <div style="display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:9999px;background:#ebe7df;box-shadow:0 8px 24px rgba(0,0,0,0.35)">
         <span style="display:block;width:40px;height:24px;background:#12301f;-webkit-mask:url(images/logo-mark.png) center/contain no-repeat;mask:url(images/logo-mark.png) center/contain no-repeat"></span>
       </div>
@@ -111,7 +111,7 @@ export function ShopMap({ className }: { className?: string }) {
       map.on('load', () => {
         if (!map) return
         restyle(map)
-        new maplibregl.Marker({ element: markerElement(), anchor: 'bottom' }).setLngLat(SHOP).addTo(map)
+        new maplibregl.Marker({ element: markerElement(), anchor: 'bottom', offset: [0, 2.5] }).setLngLat(SHOP).addTo(map)
         // fade the map in only once the streets have actually been drawn, so a
         // slow connection never shows the pin over an empty panel
         map.once('idle', () => setReady(true))
