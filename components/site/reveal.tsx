@@ -9,16 +9,17 @@ type RevealProps = {
   className?: string
   delay?: number
   as?: ElementType
+  style?: React.CSSProperties
 }
 
-export function Reveal({ children, className, delay = 0, as: Tag = 'div' }: RevealProps) {
+export function Reveal({ children, className, delay = 0, as: Tag = 'div', style }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { threshold: 0.2 })
 
   return (
     <Tag
       ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ ...style, transitionDelay: `${delay}ms` }}
       className={cn(
         'transition-[opacity,translate] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:translate-y-0',
         inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',

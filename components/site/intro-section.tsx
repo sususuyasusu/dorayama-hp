@@ -86,10 +86,14 @@ export function IntroSection() {
           >
             {/* lines fade in one by one, right to left */}
             {COPY.map((line, i) => (
-              <Reveal key={line} as="span" delay={i * 450} className="block !translate-y-0">
-                <span className="block" style={{ writingMode: 'vertical-rl', marginTop: `${(i % 3) * 1.5}em` }}>
-                  {line}
-                </span>
+              <Reveal
+                key={line}
+                as="span"
+                delay={i * 450}
+                className="block shrink-0 !translate-y-0"
+                style={{ writingMode: 'vertical-rl', marginTop: `${(i % 3) * 1.5}em` }}
+              >
+                {line}
               </Reveal>
             ))}
           </p>
