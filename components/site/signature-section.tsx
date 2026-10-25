@@ -46,14 +46,14 @@ export function SignatureSection() {
   return (
     <section aria-labelledby="signature-heading">
       <div className="flex justify-center py-28 md:py-40">
-        <Reveal>
-          <h2
-            id="signature-heading"
-            className="font-mincho text-[30px] font-bold tracking-[0.2em] text-paper md:text-[38px]"
-            style={{ writingMode: 'vertical-rl' }}
-          >
-            定番商品
-          </h2>
+        {/* the heading itself is the vertical, fading element: a wrapper box
+            around vertical text is mis-sized by Safari and pushes it off centre */}
+        <Reveal
+          as="h2"
+          className="font-mincho text-[30px] font-bold tracking-[0.2em] text-paper md:text-[38px]"
+          style={{ writingMode: 'vertical-rl' }}
+        >
+          <span id="signature-heading">定番商品</span>
         </Reveal>
       </div>
 
