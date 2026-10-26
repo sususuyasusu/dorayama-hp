@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://dorayama.com
+Sitemap: https://dorayama.com/sitemap.xml
