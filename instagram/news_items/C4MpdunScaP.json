@@ -1,0 +1,15 @@
+{
+  "code": "C4MpdunScaP",
+  "date": "2024-03-07",
+  "publish": true,
+  "category": "店舗のお知らせ",
+  "title": "ネット通販「どら山便」を開始しました",
+  "body": [
+    "本日より、少量ではございますが、ネット通販を始めました。代表的な商品3種の詰め合わせ「どら山便」です。内容は、黒どら3個、白どら3個、あんバターどら3個です。",
+    "火曜定休日を除く月・水・木・金に、その日焼いたどらやきをご自宅へ発送いたします。遠方にいらっしゃる方で、ご興味がございましたら、ぜひ一度お試しください。"
+  ],
+  "media": null,
+  "en": {"title": "Online Shop \"Dorayama Bin\" Now Open", "summary": "We have started small-scale online sales of an assortment of 3 Black, 3 White and 3 Anbutter dorayaki, shipped Monday, Wednesday, Thursday and Friday, baked that day."},
+  "zh": {"title": "网络销售「Dorayama Bin（どら山便）」开始", "summary": "我们开始小批量网络销售，套装含黑铜锣烧3个、白铜锣烧3个、红豆黄油铜锣烧3个，周一、三、四、五发送当天烤制的铜锣烧。"},
+  "ko": {"title": "온라인 판매 '도라야마 빈' 시작", "summary": "소량으로 온라인 판매를 시작했습니다. 검은·흰·앙버터 도라야키 각 3개 세트이며, 월·수·목·금에 당일 구운 도라야키를 발송합니다."}
+}

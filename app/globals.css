@@ -13,7 +13,7 @@
 
   /* every text on the site is set in mincho: Shippori Mincho (level figures)
      for body text, Cormorant Garamond only for the English category titles */
-  --font-serif: var(--font-mincho), 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-serif: var(--font-mincho), 'Hiragino Mincho ProN', 'Yu Mincho', 'Songti SC', 'Noto Serif SC', 'AppleMyungjo', 'Noto Serif KR', serif;
   --font-sans: var(--font-serif);
 }
 

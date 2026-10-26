@@ -1,0 +1,15 @@
+{
+  "code": "CiUyuXarn0Z",
+  "date": "2022-09-10",
+  "publish": true,
+  "category": "店舗のお知らせ",
+  "title": "『どらやき自動販売機』を設置しました",
+  "body": [
+    "新たな試みとして、9月11日の閉店後から「どらやき自動販売機」をスタートします。忙しくて販売中にお越しになれないお客様のために、店頭にどらやき専用の自動販売機を設置しました。",
+    "内容は「黑あん」と「白あん」のみです。営業終了後でも、その日に焼いた門仲どらやきをご自宅用にお求めいただけます。数量に限りがありますので、売り切れにはご注意ください。"
+  ],
+  "media": null,
+  "en": {"title": "Dorayaki Vending Machine Now in Front of the Shop", "summary": "Starting after closing on September 11, 2022, a vending machine sells the day's black and white bean dorayaki after business hours. Quantities are limited."},
+  "zh": {"title": "店门口设置「铜锣烧自动贩卖机」", "summary": "自2022年9月11日打烊后起，店门口的自动贩卖机将在营业结束后供应当天现烤的黑豆沙与白豆沙铜锣烧，数量有限。"},
+  "ko": {"title": "'도라야키 자판기'를 설치했습니다", "summary": "2022년 9월 11일 폐점 후부터 매장 앞 자판기에서 당일 구운 검은 팥·흰 팥 도라야키를 영업 종료 후에도 구매할 수 있습니다. 수량 한정."}
+}

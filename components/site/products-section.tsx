@@ -1,6 +1,7 @@
 'use client'
 
 import { type FocusEvent, useEffect, useRef, useState } from 'react'
+import { DICT, type Dict, type Lang } from '@/lib/i18n'
 import { RESERVE_URL } from '@/lib/site'
 import { CrossfadeImage } from './crossfade-image'
 import { PillLink } from './pill-link'
@@ -17,65 +18,13 @@ type Product = {
   gallery?: string[]
 }
 
-const PRODUCTS: Product[] = [
-  {
-    name: '黑どら（つぶあん）',
-    description: 'どら山の定番。北海道十勝産の小豆を甘さ控えめに炊き、隠し味に塩をきかせたつぶあんを、ふかふかの生地でたっぷり挟みました。',
-    price: '299',
-    image: 'images/40.jpg',
-    alt: '黑どら（つぶあん）',
-  },
-  {
-    name: '白どら（白あん）',
-    description: '白いんげん豆の白あんを挟んだ、やさしい甘さのどらやき。つぶあんとはまた違う、なめらかな口あたりを楽しめます。',
-    price: '320',
-    image: 'images/41.jpg',
-    alt: '白どら（白あん）',
-  },
-  {
-    name: 'あんバターどら',
-    description: '塩入りのつぶあんに、十勝産生乳のバターを合わせました。あんの甘さとバターのコクが重なる、ひと口目から満足感のある一品です。',
-    price: '420',
-    image: 'images/42.jpg',
-    alt: 'つぶあんとバターを挟んだ、あんバターどら',
-  },
-  {
-    name: 'めっちゃ抹茶どら',
-    description: '抹茶をたっぷり使った、鮮やかな緑のどらやき。抹茶好きの方にこそ味わっていただきたい、香りの立つひと品です。',
-    price: '450',
-    image: 'images/43.jpg',
-    alt: '抹茶色の生地の、めっちゃ抹茶どら',
-  },
-  {
-    name: '生どら',
-    description: '季節のフルーツとクリームを、ふかふかの生地で包みました。中身は時季によって入れ替わります。',
-    price: '480',
-    image: 'images/44.jpg',
-    alt: 'バナナとクリームを挟んだ生どら',
-  },
-  {
-    name: '旬どら（月替わり）',
-    description: '毎月入れ替わる、季節のどらやき。10月は「幻の栗マロンかぼちゃどら」です。月ごとの味はお知らせとInstagramでご案内します。',
-    price: '450〜',
-    image: 'images/14.jpg',
-    alt: '10月の旬どら、幻の栗マロンかぼちゃどら',
-  },
-  {
-    name: '皮だけ（4枚）',
-    description: 'ふかふかの生地だけを4枚にした、どら山ならではのセット。あんこが苦手な方も、お好みのトッピングでオリジナルのどらやきをお楽しみいただけます。',
-    price: '430',
-    image: 'images/53.jpg',
-    alt: 'どらやきの皮だけ4枚セット',
-  },
-  {
-    name: '手みやげ・ギフト',
-    description: 'ひとつずつ個包装にし、箱と紙袋に入れてお渡しします。個包装なので、職場や集まりでの配り分けにも便利です。ご挨拶や手みやげにどうぞ。',
-    image: 'images/51.jpg',
-    alt: '個包装のどらやきとギフト箱、紙袋',
-  },
-]
+// prices and photos are shared by every language; names and text come from the dictionary
+const PRICES: (string | undefined)[] = ['299', '320', '420', '450', '480', '450〜', '430', undefined]
+const IMAGES = ['images/40.jpg', 'images/41.jpg', 'images/42.jpg', 'images/43.jpg', 'images/44.jpg', 'images/14.jpg', 'images/53.jpg', 'images/51.jpg']
 
-export function ProductsSection() {
+export function ProductsSection({ lang = 'ja' }: { lang?: Lang }) {
+  const t = DICT[lang].products
+  const PRODUCTS: Product[] = t.items.map((p, i) => ({ ...p, price: PRICES[i], image: IMAGES[i] }))
   const sectionRef = useRef<HTMLDivElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
@@ -156,19 +105,14 @@ export function ProductsSection() {
             className="flex w-max flex-row items-end gap-[12vw] px-[6vw] pt-16 will-change-transform md:gap-[8vw] md:px-[8vw]"
           >
             <div className="flex w-[86vw] shrink-0 flex-col justify-end pb-[12vh] md:w-[30rem] md:pb-24">
-              <SectionHeading
-                id="products-heading"
-                jp="お品書き"
-                en="Products"
-                lead={['Skins baked fresh every morning,', 'with classic and seasonal fillings.']}
-              />
+              <SectionHeading id="products-heading" jp={t.label} en="Products" lead={t.lead} vertical={lang === 'ja'} />
               <Reveal delay={300} className="mt-10 text-[13px] leading-loose tracking-[0.08em] text-mute md:pl-[calc(2rem+4rem)]">
-                <p>毎朝焼き上げる皮に、定番のつぶあんと白あん、季節ごとの味を挟んでいます。店頭ではその日に焼いたどらやきを、ご予約はテイクイーツで翌日以降のお受け取り分を5個から承ります。</p>
+                <p>{t.intro}</p>
               </Reveal>
             </div>
 
             {PRODUCTS.map((p, i) => (
-              <ProductPanel key={p.name} product={p} index={i + 1} />
+              <ProductPanel key={p.name} product={p} index={i + 1} t={t} />
             ))}
           </div>
         </div>
@@ -176,14 +120,14 @@ export function ProductsSection() {
 
       <div className="mx-auto max-w-4xl px-4 pb-32 pt-8 md:px-10 md:pb-48 md:pt-16">
         <Reveal>
-          <p className="chotai text-[11px] tracking-[0.1em] text-mute">価格はすべて税込です。</p>
+          <p className="chotai text-[11px] tracking-[0.1em] text-mute">{t.taxNote}</p>
         </Reveal>
       </div>
     </section>
   )
 }
 
-function ProductPanel({ product, index }: { product: Product; index: number }) {
+function ProductPanel({ product, index, t }: { product: Product; index: number; t: Dict['products'] }) {
   return (
     <article
       data-panel
@@ -216,13 +160,13 @@ function ProductPanel({ product, index }: { product: Product; index: number }) {
         </div>
         <div className="flex items-center gap-6 pl-7 md:pl-0">
           {product.price && (
-            <p className="chotai font-mincho text-lg leading-none text-paper tabular-nums" aria-label={`税込${product.price}円`}>
+            <p className="chotai font-mincho text-lg leading-none text-paper tabular-nums" aria-label={t.priceAria(product.price)}>
               {product.price}
-              <span className="ml-1 text-sm text-mute">圓</span>
+              <span className="ml-1 text-sm text-mute">{t.yen}</span>
             </p>
           )}
-          <PillLink href={RESERVE_URL} external ariaLabel={`${product.name}をご予約（新しいタブで開きます）`}>
-            ご予約
+          <PillLink href={RESERVE_URL} external ariaLabel={t.reserveAria(product.name)}>
+            {t.reserve}
           </PillLink>
         </div>
       </div>

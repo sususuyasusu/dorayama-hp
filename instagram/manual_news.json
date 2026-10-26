@@ -1,0 +1,39 @@
+[
+ {
+  "slug": "2026-05-junsanpo",
+  "date": "2026-05-18",
+  "category": "メディア",
+  "title": "テレビ朝日「じゅん散歩」でご紹介いただきました",
+  "body": [
+   "2026年5月18日放送のテレビ朝日「じゅん散歩」で、門前仲町のどら山 總本鋪をご紹介いただきました。",
+   "ご覧いただいた皆さま、ありがとうございました。",
+   "店頭では毎朝、銅板で一枚ずつ焼き上げたどらやきをご用意しています。門前仲町駅から徒歩1分、参拝の帰りにもお気軽にお立ち寄りください。"
+  ],
+  "image": "images/21.jpg",
+  "alt": "どら山の店先",
+  "media": {"outlet": "テレビ朝日「じゅん散歩」", "kind": "テレビ", "date": "2026-05-18", "summary": "門前仲町を歩くコーナーで、どら山 總本鋪をご紹介いただきました。"},
+  "i18n": {
+   "en": {"title": "Featured on TV Asahi's \"Jun Sanpo\"", "summary": "Our main shop in Monzen-nakacho was featured on TV Asahi's walking programme \"Jun Sanpo\", broadcast on 18 May 2026."},
+   "zh": {"title": "朝日电视台「纯散步」介绍了 Dorayama", "summary": "2026年5月18日播出的朝日电视台「纯散步」节目中，介绍了位于门前仲町的 Dorayama 总本铺。"},
+   "ko": {"title": "TV 아사히 「준산포」에 소개되었습니다", "summary": "2026년 5월 18일 방송된 TV 아사히 「준산포」에서 몬젠나카초의 Dorayama 총본포가 소개되었습니다."}
+  }
+ },
+ {
+  "slug": "2026-08-prtimes-kurikuri",
+  "date": "2026-08-04",
+  "category": "メディア",
+  "title": "PR TIMESで「くりくり和栗どら」のプレスリリースを配信しました",
+  "body": [
+   "8月限定の旬どら「くりくり和栗どら」の発売にあわせて、PR TIMESでプレスリリースを配信しました。",
+   "丸ごとの渋皮栗を包み、栗を三つの表情で重ねたどらやきです。"
+  ],
+  "image": "images/60.jpg",
+  "alt": "くりくり和栗どら",
+  "media": {"outlet": "PR TIMES（プレスリリース配信）", "kind": "ウェブ", "date": "2026-08-04", "summary": "8月限定の旬どら「くりくり和栗どら」の発売をお知らせしました。"},
+  "i18n": {
+   "en": {"title": "Press release on PR TIMES: \"Kuri-kuri Waguri Dora\"", "summary": "We announced August's seasonal dorayaki, filled with a whole candied chestnut, in a press release on PR TIMES."},
+   "zh": {"title": "在 PR TIMES 发布「日本栗子铜锣烧」新闻稿", "summary": "配合8月限定的季节铜锣烧发售，我们在 PR TIMES 发布了新闻稿。"},
+   "ko": {"title": "PR TIMES에 「쿠리쿠리 와구리 도라」 보도자료 배포", "summary": "8월 한정 계절 도라야키의 출시에 맞춰 PR TIMES에 보도자료를 배포했습니다."}
+  }
+ }
+]

@@ -14,6 +14,8 @@ type SectionHeadingProps = {
   lead: string[]
   /** Optional vertical catch copy shown on the right (one string per column) */
   catchCopy?: string[]
+  /** Japanese sets the label and catch copy vertically; translations run across */
+  vertical?: boolean
   className?: string
 }
 
@@ -22,7 +24,7 @@ const EASE = 'cubic-bezier(0.43, 0.05, 0.17, 1)'
 // Category heading: boxed vertical Japanese label, a large thin serif English
 // title that sharpens out of a blur, a few small English lines, and an
 // optional vertical catch copy on the right.
-export function SectionHeading({ id, jp, en, lead, catchCopy, className }: SectionHeadingProps) {
+export function SectionHeading({ id, jp, en, lead, catchCopy, vertical = true, className }: SectionHeadingProps) {
   const ref = useRef<HTMLDivElement>(null)
   const shown = useInView(ref, { threshold: 0.3 })
   const fade = (delay: number, extra: React.CSSProperties = {}) => ({
@@ -34,8 +36,11 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
   return (
     <div ref={ref} className={cn('flex items-start gap-6 md:gap-16', className)}>
       <span
-        className="chotai mt-3 shrink-0 border-[0.5px] border-paper/50 px-[10px] py-[15px] outline outline-[0.5px] -outline-offset-[3.5px] outline-paper/50 text-[13px] font-extralight leading-[1.5] tracking-[0.25em] text-paper"
-        style={fade(0, { writingMode: 'vertical-rl', fontFamily: 'var(--font-hairline), serif' })}
+        className={cn(
+          'chotai mt-3 shrink-0 border-[0.5px] border-paper/50 outline outline-[0.5px] -outline-offset-[3.5px] outline-paper/50 text-[13px] font-extralight leading-[1.5] text-paper',
+          vertical ? 'px-[10px] py-[15px] tracking-[0.25em]' : 'whitespace-nowrap px-[14px] py-[9px] tracking-[0.12em]',
+        )}
+        style={fade(0, { writingMode: vertical ? 'vertical-rl' : undefined, fontFamily: 'var(--font-hairline), serif' })}
       >
         {jp}
       </span>
@@ -68,11 +73,11 @@ export function SectionHeading({ id, jp, en, lead, catchCopy, className }: Secti
 
       {catchCopy && (
         <p
-          className="font-mincho hidden shrink-0 flex-row-reverse items-start gap-6 text-[22px] leading-[1.6] tracking-[0.25em] text-paper md:flex lg:text-[26px]"
+          className={cn('font-mincho hidden shrink-0 items-start text-[22px] leading-[1.6] text-paper md:flex lg:text-[26px]', vertical ? 'flex-row-reverse gap-6 tracking-[0.25em]' : 'flex-col gap-1 tracking-[0.06em]')}
           style={fade(700)}
         >
           {catchCopy.map((col, i) => (
-            <span key={col} className="chotai" style={{ writingMode: 'vertical-rl', marginTop: i % 2 === 1 ? '2.5em' : 0 }}>
+            <span key={col} className="chotai" style={vertical ? { writingMode: 'vertical-rl', marginTop: i % 2 === 1 ? '2.5em' : 0 } : { display: 'block' }}>
               {col}
             </span>
           ))}

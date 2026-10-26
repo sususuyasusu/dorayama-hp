@@ -3,9 +3,10 @@
 set -e
 cd ~/dorayama-hp
 export PATH=~/.local/node/bin:$PATH
+export NODE_OPTIONS="--dns-result-order=ipv4first"
 export SITE_BASE='' NEXT_PUBLIC_SITE_BASE=''
-rm -rf .next out out_root
-npm run build 2>&1 | grep -E "error|Error|Failed" | grep -v "security vulnerability" || true
+rm -rf out_root
+SITE_BASE= NEXT_PUBLIC_SITE_BASE= zsh build.sh >/dev/null
 test -f out/index.html
 mv out out_root
 chmod -R a+rX out_root

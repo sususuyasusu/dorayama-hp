@@ -1,0 +1,15 @@
+{
+  "code": "CnB-E20SmSw",
+  "date": "2023-01-05",
+  "publish": true,
+  "category": "店舗のお知らせ",
+  "title": "公式予約注文サイトができました",
+  "body": [
+    "どら山の公式予約注文サイトができました。今後のご予約は、店頭または注文サイトでお願いいたします。商品が写真付きで見やすく、ご希望の商品や受け取り日時を確認しながら安心してご注文いただけます。",
+    "ご予約の条件は、どらやき10個以上のご注文で、1か月先から前日の午前までの受け付けとなります。少しずつ改善してまいりますので、引き続きよろしくお願いいたします。"
+  ],
+  "media": null,
+  "en": {"title": "Official Online Pre-order Site Is Open", "summary": "Reservations are now taken in store or through our official pre-order site. Orders require 10 or more dorayaki and can be placed from one month ahead until the morning of the previous day."},
+  "zh": {"title": "官方预约订购网站上线", "summary": "今后请通过门店或官方预约订购网站预约。需订购10个以上铜锣烧，可预约至一个月后，截止到前一天上午。"},
+  "ko": {"title": "공식 예약 주문 사이트 오픈", "summary": "앞으로 예약은 매장 또는 공식 예약 주문 사이트에서 받습니다. 도라야키 10개 이상, 한 달 전부터 전날 오전까지 주문 가능합니다."}
+}

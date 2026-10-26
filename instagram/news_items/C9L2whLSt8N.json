@@ -1,0 +1,16 @@
+{
+  "code": "C9L2whLSt8N",
+  "date": "2024-07-09",
+  "publish": true,
+  "category": "店舗のお知らせ",
+  "title": "お中元ギフトの受付を開始しました",
+  "body": [
+    "お中元ギフトの受付を始めました。大切な方への贈り物にぜひご利用ください。店頭でのお引き取りのほか、遠方の方へのご発送も可能です。",
+    "お名前の記載をご希望の方は、ご注文時にお申し付けいただければ、特製ののし紙に記載いたします。通販で紙袋もあわせてご注文いただければ、そのままお持たせとしてもお使いいただけます。",
+    "今年の夏も例年以上に暑くなるようですので、大切な方へのお気持ちとして、当店のどらやきをお送りいただいてはいかがでしょうか。\n【販売ページ】https://dorayama.take-eats.jp"
+  ],
+  "media": null,
+  "en": {"title": "Summer Gift (Ochugen) Orders Now Open", "summary": "Our summer gift dorayaki sets are available for in-store pickup or shipping to distant recipients, with custom noshi paper and optional gift bags."},
+  "zh": {"title": "中元节礼品开始接受订购", "summary": "中元节铜锣烧礼品现已开始接受订购，可到店自取，也可寄送给远方的亲友，并提供定制贺礼纸和可选纸袋。"},
+  "ko": {"title": "오추겐(여름 선물) 접수 시작", "summary": "여름 선물용 도라야키를 매장 수령 또는 먼 곳으로의 배송으로 주문하실 수 있으며, 이름을 넣은 노시지와 쇼핑백도 함께 주문하실 수 있습니다."}
+}

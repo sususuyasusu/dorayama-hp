@@ -1,61 +1,34 @@
-// Shop news. Only items confirmed in the shop's records (press releases,
-// broadcast); the day of month is shown only where it is known.
+// Shop news. Built from the shop's Instagram posts (rewritten for the site by
+// instagram/build_news.py) plus a few hand-written items; newest first.
+import data from './news-data.json'
+import type { Lang } from './i18n'
+
+export type MediaInfo = { outlet: string; kind: string; date: string; summary: string }
+type Translation = { title: string; summary: string }
+
 export type NewsItem = {
   slug: string
   date: string
+  category: string
   title: string
+  body: string[]
   image: string
   alt: string
-  body: string[]
+  media?: MediaInfo | null
+  instagram?: string
+  i18n?: Partial<Record<'en' | 'zh' | 'ko', Translation>>
 }
 
-export const NEWS: NewsItem[] = [
-  {
-    slug: '2026-10-shundora',
-    date: '2026.10',
-    title: '10月の旬どら「幻の栗マロンかぼちゃどら」',
-    image: 'images/14.jpg',
-    alt: '幻の栗マロンかぼちゃどら',
-    body: [
-      '10月の旬どらは「幻の栗マロンかぼちゃどら」です。',
-      '旬どらは、毎月入れ替わる季節のどらやき。毎朝店頭の銅板で焼き上げるふかふかの生地で、その月ならではの味をお届けしています。',
-      '販売状況は店頭、またはテイクイーツのご予約ページでご確認ください。ご予約は翌日以降のお受け取り分を5個から承ります。',
-    ],
-  },
-  {
-    slug: '2026-09-shundora',
-    date: '2026.09',
-    title: '9月の旬どら「熊本県産紅はるかどら」',
-    image: 'images/61.jpg',
-    alt: '熊本県産紅はるかどら',
-    body: [
-      '9月の旬どらは、熊本県産の紅はるかを使った「熊本県産紅はるかどら」（480圓・税込）です。',
-      'ねっとりと甘い紅はるかの味わいを、ふかふかの生地で包みました。',
-      '旬どらは毎月入れ替わる季節のどらやきです。翌月の味もお知らせとInstagramでご案内します。',
-    ],
-  },
-  {
-    slug: '2026-08-kurikuri',
-    date: '2026.08.04',
-    title: '8月限定の旬どら「くりくり和栗どら」',
-    image: 'images/60.jpg',
-    alt: 'くりくり和栗どら',
-    body: [
-      '秋をひと足早く味わう、8月限定の旬どら「くりくり和栗どら」（460圓・税込）を発売しました。',
-      '丸ごとの渋皮栗を包み、栗を三つの表情で重ねたどらやきです。',
-      '旬どらは、月替わりでお届けするどら山の季節のどらやき。店頭とテイクイーツのご予約でお求めいただけます。',
-    ],
-  },
-  {
-    slug: '2026-05-junsanpo',
-    date: '2026.05.18',
-    title: 'テレビ朝日「じゅん散歩」でご紹介いただきました',
-    image: 'images/21.jpg',
-    alt: 'どら山の店先',
-    body: [
-      '2026年5月18日放送のテレビ朝日「じゅん散歩」で、門前仲町のどら山 總本鋪をご紹介いただきました。',
-      'ご覧いただいた皆さま、ありがとうございました。',
-      '店頭では毎朝、銅板で一枚ずつ焼き上げたどらやきをご用意しています。門前仲町駅から徒歩1分、参拝の帰りにもお気軽にお立ち寄りください。',
-    ],
-  },
-]
+export const NEWS = data as NewsItem[]
+export const MEDIA_NEWS = NEWS.filter((n) => n.media)
+export const NEWS_CATEGORIES = ['旬どら', '新商品', '催事・出店', 'メディア', '店舗のお知らせ', '開店までの歩み', 'その他']
+
+// 2026-10-01 -> 2026.10.01
+export const formatDate = (d: string) => d.split('-').join('.')
+
+// title and lines of text for a language; other languages fall back to Japanese
+export function localized(item: NewsItem, lang: Lang): { title: string; body: string[] } {
+  if (lang === 'ja') return { title: item.title, body: item.body }
+  const t = item.i18n?.[lang]
+  return t ? { title: t.title, body: [t.summary] } : { title: item.title, body: item.body }
+}

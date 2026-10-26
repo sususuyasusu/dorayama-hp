@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>どら山 HP開設ストーリー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1080px; height: 1920px; overflow: hidden; position: relative;
+    background: #12301f url(../public/images/grain.png); background-blend-mode: overlay;
+    color: #ebe7df; font-family: 'Shippori Mincho', serif;
+  }
+  .photo {
+    position: absolute; left: 0; top: 0; width: 1080px; height: 1000px;
+    background: url(../public/images/70.jpg) 58% center / cover no-repeat;
+  }
+  .photo::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(18,48,31,0) 55%, rgba(18,48,31,.85) 85%, #12301f 100%);
+  }
+  .chotai { display: inline-block; transform: scaleX(0.8); transform-origin: center; white-space: nowrap; }
+  .mark { position: absolute; left: 50%; top: 830px; width: 200px; transform: translateX(-50%); }
+  .block { position: absolute; left: 0; right: 0; top: 995px; text-align: center; }
+  .shop { font-size: 34px; letter-spacing: .25em; opacity: .85; }
+  .lead { margin-top: 46px; font-size: 76px; font-weight: 600; line-height: 1.45; letter-spacing: .12em; }
+  .rule { width: 90px; height: 1px; background: rgba(235,231,223,.6); margin: 52px auto 44px; }
+  .url { font-family: 'Cormorant Garamond', serif; font-size: 84px; font-weight: 400; letter-spacing: .04em; }
+  .message { margin: 44px 0 0; font-size: 36px; line-height: 1.9; letter-spacing: .12em; opacity: .9; }
+</style>
+</head>
+<body>
+  <div class="photo"></div>
+  <img class="mark" src="logo-mark-paper.png" alt="">
+  <div class="block">
+    <div><span class="chotai shop">門仲どらやき どら山 總本鋪</span></div>
+    <div class="lead"><span class="chotai">公式ホームページを</span><br><span class="chotai">開設しました</span></div>
+    <p class="message">今後のどら山の活動を<br>丁寧に伝えていきたいです。</p>
+  </div>
+</body>
+</html>

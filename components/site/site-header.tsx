@@ -1,10 +1,86 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { DICT, LANGS, LANG_LABEL, LANG_SHORT, prefix, type Lang } from '@/lib/i18n'
 import { INSTAGRAM_URL, RESERVE_URL, SECTIONS } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
-export function SiteHeader() {
+// Language switch next to the hamburger: a small pill with the current
+// language that opens a list of the four; each link keeps the page you are on.
+function LanguageSwitch({ lang, dark }: { lang: Lang; dark: boolean }) {
+  const [open, setOpen] = useState(false)
+  const [hrefs, setHrefs] = useState<Record<Lang, string>>(() => ({ ja: './', en: 'en/', zh: 'zh/', ko: 'ko/' }))
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // the same page in each language, relative to the site root
+    const base = new URL(document.baseURI).pathname
+    let rest = location.pathname.startsWith(base) ? location.pathname.slice(base.length) : ''
+    const m = rest.match(/^(en|zh|ko)(\/|$)/)
+    if (m) rest = rest.slice(m[0].length)
+    const next = {} as Record<Lang, string>
+    for (const l of LANGS) next[l] = base + prefix(l) + rest
+    setHrefs(next)
+  }, [])
+
+  useEffect(() => {
+    if (!open) return
+    const close = (e: MouseEvent) => ref.current && !ref.current.contains(e.target as Node) && setOpen(false)
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('click', close)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('click', close)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-label={DICT[lang].header.language}
+        className="inline-flex h-[26px] items-center gap-1.5 whitespace-nowrap rounded-full px-1.5 text-[11px] tracking-[0.12em] transition-colors duration-500 lg:h-[34px] lg:text-[13px] 2xl:h-10 2xl:text-[14px]"
+      >
+        {/* thin globe line icon */}
+        <svg aria-hidden="true" viewBox="0 0 24 24" className="size-[15px] lg:size-[18px]" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" />
+        </svg>
+        {LANG_SHORT[lang]}
+      </button>
+      <ul
+        className={cn(
+          'absolute right-0 top-[calc(100%+8px)] min-w-[8.5rem] overflow-hidden rounded-[4px] border py-1.5 text-[13px] tracking-[0.08em] shadow-lg transition-[opacity,visibility,translate] duration-300',
+          open ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-1 opacity-0',
+          dark ? 'border-[#12301f]/15 bg-[#ebe7df] text-[#12301f]' : 'border-paper/15 bg-[#12301f]/95 text-paper backdrop-blur-md',
+        )}
+      >
+        {LANGS.map((l) => (
+          <li key={l}>
+            <a
+              href={hrefs[l]}
+              hrefLang={l}
+              lang={l}
+              aria-current={l === lang ? 'true' : undefined}
+              className={cn('flex items-center justify-between gap-4 px-4 py-2 transition-colors hover:bg-current/10', l === lang && 'opacity-50')}
+            >
+              {LANG_LABEL[l]}
+              <span className="text-[10px] opacity-70">{LANG_SHORT[l]}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export function SiteHeader({ lang = 'ja' }: { lang?: Lang }) {
+  const t = DICT[lang]
+  const p = prefix(lang)
   const [active, setActive] = useState<string>(SECTIONS[0].id)
   const [open, setOpen] = useState(false)
 
@@ -85,7 +161,7 @@ export function SiteHeader() {
           )}
         />
         <div className="relative flex h-[38px] items-center justify-between gap-6 px-4 transition-colors duration-500 md:h-[43px] md:px-10 lg:h-[53px] lg:px-14 2xl:h-16 2xl:px-20">
-          <a href="#intro" onClick={() => setOpen(false)} aria-label="門仲どらやき どら山 トップへ" className="block">
+          <a href={`${p}#intro`} onClick={() => setOpen(false)} aria-label={t.header.top} className="block">
             {/* logo drawn in the current text colour (white over video, green on washi) */}
             <span
               aria-hidden="true"
@@ -102,13 +178,14 @@ export function SiteHeader() {
           </a>
 
         <div className="flex items-center gap-3 lg:gap-5 2xl:gap-6">
+        <LanguageSwitch lang={lang} dark={dark} />
         {/* the menu is always behind the hamburger, on every screen size */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? 'メニューを閉じる' : 'メニューを開く'}
+          aria-label={open ? t.header.close : t.header.open}
           className="relative flex size-8 items-center justify-center lg:size-10 2xl:size-12"
         >
           {/* three thin lines cross-fade into a thin × */}
@@ -134,8 +211,8 @@ export function SiteHeader() {
           rel="noopener noreferrer"
           className="chotai-r inline-flex h-[26px] items-center whitespace-nowrap rounded-full border border-current px-3.5 text-[11px] tracking-[0.15em] transition-colors duration-500 hover:bg-current/10 lg:h-[34px] lg:px-5 lg:text-[13px] 2xl:h-10 2xl:px-6 2xl:text-[14px]"
         >
-          ご予約
-          <span className="sr-only">（新しいタブで開きます）</span>
+          {t.header.reserve}
+          <span className="sr-only">{t.header.newTab}</span>
         </a>
         </div>
         </div>
@@ -157,7 +234,7 @@ export function SiteHeader() {
         }}
       >
         <div className="px-5 pb-16 pt-[calc(3.5rem+16vh)] text-[#12301f] md:px-10 md:pt-[calc(4rem+18vh)] lg:px-14 2xl:px-20">
-          <nav aria-label="モバイルナビゲーション">
+          <nav aria-label="Menu">
             <ul className="chotai flex flex-col gap-3">
               {SECTIONS.map((s, i) => (
                 <li
@@ -170,7 +247,7 @@ export function SiteHeader() {
                   }}
                 >
                   <a
-                    href={`#${s.id}`}
+                    href={`${p}#${s.id}`}
                     onClick={() => setOpen(false)}
                     aria-current={active === s.id ? 'true' : undefined}
                     className="flex items-baseline gap-4"
@@ -178,7 +255,7 @@ export function SiteHeader() {
                     <span className="text-[26px] font-light leading-[1.25] md:text-[40px]" style={{ fontFamily: 'var(--font-display), serif' }}>
                       {s.nav}
                     </span>
-                    <span className="text-[11px] tracking-[0.2em] text-[#12301f]/55">{s.jp}</span>
+                    <span className="text-[11px] tracking-[0.2em] text-[#12301f]/55">{t.nav[s.id]}</span>
                   </a>
                 </li>
               ))}
@@ -191,20 +268,20 @@ export function SiteHeader() {
           >
             <li>
               <a href={RESERVE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                ご予約（テイクイーツ）<span aria-hidden="true">↗</span>
-                <span className="sr-only">（新しいタブで開きます）</span>
+                {t.header.reserveLong}<span aria-hidden="true">↗</span>
+                <span className="sr-only">{t.header.newTab}</span>
               </a>
             </li>
             <li>
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                 Instagram<span aria-hidden="true">↗</span>
-                <span className="sr-only">（新しいタブで開きます）</span>
+                <span className="sr-only">{t.header.newTab}</span>
               </a>
             </li>
             <li className="mt-6 text-[12px] leading-[1.9] text-[#12301f]/60">
-              門前仲町駅 徒歩1分
+              {t.header.walk}
               <br />
-              10:00〜16:00（売り切れ次第終了）・年中無休
+              {t.header.hours}
             </li>
           </ul>
         </div>

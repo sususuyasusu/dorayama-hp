@@ -1,24 +1,18 @@
+import { DICT, type Lang } from '@/lib/i18n'
 import { HeroLogo } from './hero-logo'
 import { HeroVideo } from './hero-video'
 import { IntroProgress } from './intro-progress'
 import { Reveal } from './reveal'
 
-const COPY = [
-  '深川不動堂と富岡八幡宮の参道、',
-  '門前仲町の路地に、どら山はあります。',
-  '毎朝、店頭の銅板で一枚ずつ。',
-  '卵白を泡立てた、おふとんのような生地に、',
-  '十勝の小豆を炊いた、塩入りのつぶあん。',
-  '富岡八幡宮に奉納する、縁起の良い門仲どらやき。',
-  'また食べたくなる、毎日食べたくなる。',
-]
-
-export function IntroSection() {
+export function IntroSection({ lang = 'ja' }: { lang?: Lang }) {
+  const t = DICT[lang].intro
+  // Japanese is set vertically; the translations read better left to right
+  const vertical = lang === 'ja'
   return (
     <>
       <IntroProgress className="relative h-[300svh]">
         <h1 id="intro-heading" className="sr-only">
-          門仲どらやき どら山 總本鋪
+          {t.h1}
         </h1>
 
         {/* pinned video; the logo rises off the top, then the picture melts
@@ -28,7 +22,7 @@ export function IntroSection() {
             <HeroVideo
               src="video/top.mp4"
               poster="video/top-poster.jpg"
-              label="どら山の店先と、銅板でどらやきを焼く様子"
+              label={t.video}
               className="absolute inset-0 h-full w-full"
             />
           </div>
@@ -61,25 +55,38 @@ export function IntroSection() {
           </div>
         </div>
 
-        {/* vertical copy that scrolls up over the pinned video */}
+        {/* copy that scrolls up over the pinned video */}
         <div className="pointer-events-none absolute inset-x-0 top-[115svh] flex justify-end px-6 md:px-[12vw]">
-          <p
-            className="font-mincho flex flex-row-reverse gap-2.5 text-[14px] leading-[1.9] tracking-[0.25em] text-paper md:gap-8 md:text-[22px] md:leading-[2] md:tracking-[0.3em]"
-            style={{ textShadow: '0 0 18px rgba(10,29,18,0.6)' }}
-          >
-            {/* lines fade in one by one, right to left */}
-            {COPY.map((line, i) => (
-              <Reveal
-                key={line}
-                as="span"
-                delay={i * 450}
-                className="block shrink-0 !translate-y-0"
-                style={{ writingMode: 'vertical-rl', marginTop: `${(i % 3) * 1.5}em` }}
-              >
-                {line}
-              </Reveal>
-            ))}
-          </p>
+          {vertical ? (
+            <p
+              className="font-mincho flex flex-row-reverse gap-2.5 text-[14px] leading-[1.9] tracking-[0.25em] text-paper md:gap-8 md:text-[22px] md:leading-[2] md:tracking-[0.3em]"
+              style={{ textShadow: '0 0 18px rgba(10,29,18,0.6)' }}
+            >
+              {/* lines fade in one by one, right to left */}
+              {t.copy.map((line, i) => (
+                <Reveal
+                  key={line}
+                  as="span"
+                  delay={i * 450}
+                  className="block shrink-0 !translate-y-0"
+                  style={{ writingMode: 'vertical-rl', marginTop: `${(i % 3) * 1.5}em` }}
+                >
+                  {line}
+                </Reveal>
+              ))}
+            </p>
+          ) : (
+            <p
+              className="font-mincho flex max-w-xl flex-col gap-3 text-[15px] leading-[1.8] tracking-[0.04em] text-paper md:text-[20px]"
+              style={{ textShadow: '0 0 18px rgba(10,29,18,0.6)' }}
+            >
+              {t.copy.map((line, i) => (
+                <Reveal key={line} as="span" delay={i * 450} className="block !translate-y-0">
+                  {line}
+                </Reveal>
+              ))}
+            </p>
+          )}
         </div>
       </IntroProgress>
       {/* the next section starts while the video is still melting away */}

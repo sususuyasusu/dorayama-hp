@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Noto_Serif_JP, Shippori_Mincho } from 'next/font/google'
 import { Loader } from '@/components/site/loader'
+import { alternates } from '@/lib/seo'
 import { SmoothScroll } from '@/components/site/smooth-scroll'
 import { ViewportFade } from '@/components/site/viewport-fade'
 import './globals.css'
@@ -83,7 +84,7 @@ export const metadata: Metadata = {
   title: '門仲どらやき どら山 總本鋪 | 門前仲町のどらやき専門店 DORAYAMA',
   description: DESCRIPTION,
   keywords: ['門仲どらやき', 'どら山', 'どらやき', '門前仲町', '門仲', '和菓子', '深川', '富岡八幡宮', '深川不動堂', '手土産', '生どら'],
-  alternates: { canonical: '/' },
+  alternates: alternates('ja', ''),
   robots: { index: true, follow: true },
   openGraph: {
     title: '門仲どらやき どら山 總本鋪',
@@ -130,6 +131,12 @@ export default function RootLayout({
         {/* every relative image / page link resolves from the site root, on any page */}
         <base href={`${process.env.NEXT_PUBLIC_SITE_BASE ?? "/dorayama-hp"}/`} />
         <script dangerouslySetInnerHTML={{ __html: HTTPS_UPGRADE }} />
+        {/* one root layout serves every language; set the page language from the address */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var m=location.pathname.match(/\\/(en|zh|ko)(\\/|$)/);if(m)document.documentElement.lang=m[1]==='zh'?'zh-Hans':m[1];})();`,
+          }}
+        />
         <script dangerouslySetInnerHTML={{ __html: GA_INIT }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SHOP_JSON_LD) }} />
       </head>
