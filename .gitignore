@@ -21,3 +21,4 @@ _preview/
 out_root/
 bundle_last.txt
 .sync_secret
+.deploy/
