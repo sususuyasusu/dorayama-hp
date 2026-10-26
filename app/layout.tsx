@@ -31,6 +31,13 @@ const hairline = Noto_Serif_JP({
   preload: false,
 })
 
+// the Japanese mincho lacks simplified Chinese and Hangul, and mixing it with a
+// fallback font makes the characters sit at different heights, so the Chinese
+// and Korean pages are set entirely in one font of their own (globals.css).
+// They come straight from Google Fonts at view time: bundling them at build
+// time means hundreds of font files and the build times out.
+const CJK_FONTS = 'https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap'
+
 const SITE_URL = 'https://dorayama.com'
 const DESCRIPTION =
   '門前仲町、深川不動堂と富岡八幡宮の参道にあるどらやき専門店。毎朝、店頭の銅板で一枚ずつ手焼きする、ふかふかの「おふとん生地」と塩入りつぶあん。東京メトロ門前仲町駅から徒歩1分、年中無休。'
@@ -130,6 +137,8 @@ export default function RootLayout({
       <head>
         {/* every relative image / page link resolves from the site root, on any page */}
         <base href={`${process.env.NEXT_PUBLIC_SITE_BASE ?? "/dorayama-hp"}/`} />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={CJK_FONTS} />
         <script dangerouslySetInnerHTML={{ __html: HTTPS_UPGRADE }} />
         {/* one root layout serves every language; set the page language from the address */}
         <script

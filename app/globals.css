@@ -17,6 +17,17 @@
   --font-sans: var(--font-serif);
 }
 
+/* Chinese and Korean pages: one font for every character so nothing jumps up
+   or down (the Japanese mincho has no simplified Chinese or Hangul glyphs) */
+html:lang(zh-Hans) {
+  --font-mincho: 'Noto Serif SC', 'Songti SC', serif;
+  --font-hairline: 'Noto Serif SC', 'Songti SC', serif;
+}
+html:lang(ko) {
+  --font-mincho: 'Noto Serif KR', 'AppleMyungjo', serif;
+  --font-hairline: 'Noto Serif KR', 'AppleMyungjo', serif;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

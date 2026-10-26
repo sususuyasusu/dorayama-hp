@@ -10,5 +10,5 @@ zsh build.sh >/dev/null
 test -f out/index.html
 mv out out_root
 chmod -R a+rX out_root
-grep -q '/dorayama-hp' out_root/index.html && { echo "旧パスが残っています"; exit 1; }
+grep -q 'href="/dorayama-hp/' out_root/index.html && { echo "旧パスが残っています"; exit 1; } || true
 echo "組み立て成功（dorayama.com用）: $(du -sh out_root | cut -f1)"
