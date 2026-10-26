@@ -62,6 +62,8 @@ export function HeroVideo({ src, poster, label, className }: HeroVideoProps) {
         src={src}
         poster={poster}
         aria-label={label}
+        // the video may come from another host (GitHub Pages CDN); allow it to be drawn by WebGL
+        crossOrigin="anonymous"
         muted
         loop
         playsInline

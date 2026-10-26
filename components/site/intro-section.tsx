@@ -20,7 +20,9 @@ export function IntroSection({ lang = 'ja' }: { lang?: Lang }) {
         <div className="sticky top-0 h-svh w-full overflow-hidden">
           <div className="absolute inset-0" style={{ opacity: 'calc(1 - max(0, var(--p) - 0.72) / 0.28)' }}>
             <HeroVideo
-              src="video/top.mp4"
+              // dorayama.com's server is slow for large files, so the live site
+              // streams the opening video from the faster GitHub Pages copy
+              src={process.env.NEXT_PUBLIC_VIDEO_URL || 'video/top.mp4'}
               poster="video/top-poster.jpg"
               label={t.video}
               className="absolute inset-0 h-full w-full"
