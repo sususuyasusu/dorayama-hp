@@ -15,7 +15,7 @@ pack() {
   local list=$(mktemp)
   (cd out_root && eval "find $* -type f -print" | sed "s:^\./::" | LC_ALL=C sort) > $list
   local sum=$( (cd out_root && tr "\n" "\0" < $list | xargs -0 shasum -a 1) | shasum -a 1 | cut -c1-40)
-  if [[ -f $B/$name.sum && "$(cat $B/$name.sum)" == "$sum" && -f $B/$name ]]; then
+  if [[ -f $B/$name.sent && "$(cat $B/$name.sent)" == "$sum" && -f $B/$name ]]; then
     rm $list; return
   fi
   rm -f $B/$name
@@ -30,14 +30,14 @@ pack site_images.zip "images -path images/ig -prune -o"
 pack site_video.zip "video"
 # Instagram 写真は投稿コードの順に60枚ずつ（新しい投稿が増えても古い束は変わりにくい）
 ls out_root/images/ig | LC_ALL=C sort > $B/iglist.txt
-rm -f $B/igpart_*
+rm -f $B/igpart_*(N)
 split -l 60 $B/iglist.txt $B/igpart_
 i=1
 for l in $B/igpart_*; do
   pack site_ig$i.zip "$(sed 's#^#images/ig/#' $l | tr '\n' ' ')"
   i=$((i + 1))
 done
-rm -f $B/igpart_* $B/iglist.txt
+rm -f $B/igpart_*(N) $B/iglist.txt
 # 使われなくなった束は消す
 for z in $B/site_ig*.zip(N); do
   n=${${z:t}#site_ig}; n=${n%.zip}

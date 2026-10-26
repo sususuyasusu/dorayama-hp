@@ -60,6 +60,39 @@
   }
  },
  {
+  "slug": "2026-09-prtimes-beniharuka",
+  "date": "2026-09-01",
+  "category": "メディア",
+  "title": "PR TIMESで「紅はるかどら」のプレスリリースを配信しました",
+  "body": [
+   "9月の旬どら「紅はるかどら」の発売にあわせて、PR TIMESでプレスリリース「【熊本のおいしさを、熊本の力に】熊本県産“紅はるか”をまるごと味わう『紅はるかどら』を9月1日発売」を配信しました。",
+   "熊本県産の紅はるかを使った、月替わりの旬どらです。",
+   "プレスリリース：https://prtimes.jp/main/html/rd/p/000000038.000054325.html"
+  ],
+  "image": "images/61.jpg",
+  "alt": "熊本県産紅はるかどら",
+  "media": {
+   "outlet": "PR TIMES（プレスリリース配信）",
+   "kind": "ウェブ",
+   "date": "2026-09-01",
+   "summary": "9月の旬どら「紅はるかどら」の発売をお知らせしました。"
+  },
+  "i18n": {
+   "en": {
+    "title": "Press release on PR TIMES: \"Beni Haruka Dora\"",
+    "summary": "We announced September's seasonal dorayaki, made with Beni Haruka sweet potatoes from Kumamoto, in a press release on PR TIMES on 1 September 2026."
+   },
+   "zh": {
+    "title": "在 PR TIMES 发布「红遥红薯铜锣烧」新闻稿",
+    "summary": "2026年9月1日，配合9月限定的季节铜锣烧（使用熊本县产红遥红薯）发售，我们在 PR TIMES 发布了新闻稿。"
+   },
+   "ko": {
+    "title": "PR TIMES에 「베니하루카 도라」 보도자료 배포",
+    "summary": "2026년 9월 1일, 구마모토현산 베니하루카 고구마를 사용한 9월 한정 계절 도라야키 출시에 맞춰 PR TIMES에 보도자료를 배포했습니다."
+   }
+  }
+ },
+ {
   "slug": "Dcp95kokqsF",
   "date": "2026-08-30",
   "category": "旬どら",
@@ -86,38 +119,6 @@
    "ko": {
     "title": "9월 제철 도라야키 '구마모토산 베니하루카 도라야키'",
     "summary": "구마모토산 베니하루카 고구마 페이스트를 크림치즈 위에 올리고 검은깨로 마무리했습니다. 매출의 일부는 구마모토 지진 복구 지원에 기부됩니다. 판매 기간은 2026년 9월 1일~30일입니다."
-   }
-  }
- },
- {
-  "slug": "2026-08-prtimes-kurikuri",
-  "date": "2026-08-04",
-  "category": "メディア",
-  "title": "PR TIMESで「くりくり和栗どら」のプレスリリースを配信しました",
-  "body": [
-   "8月限定の旬どら「くりくり和栗どら」の発売にあわせて、PR TIMESでプレスリリースを配信しました。",
-   "丸ごとの渋皮栗を包み、栗を三つの表情で重ねたどらやきです。"
-  ],
-  "image": "images/60.jpg",
-  "alt": "くりくり和栗どら",
-  "media": {
-   "outlet": "PR TIMES（プレスリリース配信）",
-   "kind": "ウェブ",
-   "date": "2026-08-04",
-   "summary": "8月限定の旬どら「くりくり和栗どら」の発売をお知らせしました。"
-  },
-  "i18n": {
-   "en": {
-    "title": "Press release on PR TIMES: \"Kuri-kuri Waguri Dora\"",
-    "summary": "We announced August's seasonal dorayaki, filled with a whole candied chestnut, in a press release on PR TIMES."
-   },
-   "zh": {
-    "title": "在 PR TIMES 发布「日本栗子铜锣烧」新闻稿",
-    "summary": "配合8月限定的季节铜锣烧发售，我们在 PR TIMES 发布了新闻稿。"
-   },
-   "ko": {
-    "title": "PR TIMES에 「쿠리쿠리 와구리 도라」 보도자료 배포",
-    "summary": "8월 한정 계절 도라야키의 출시에 맞춰 PR TIMES에 보도자료를 배포했습니다."
    }
   }
  },
