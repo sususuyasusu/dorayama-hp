@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { DICT, prefix, type Lang } from '@/lib/i18n'
-import { NEWS, formatDate, localized } from '@/lib/news'
+import { DICT, HTML_LANG, prefix, type Lang } from '@/lib/i18n'
+import { NEWS, formatDate, localized, type NewsItem } from '@/lib/news'
 import { alternates } from '@/lib/seo'
 import { NewsList } from './news-list'
 import { Reveal } from './reveal'
@@ -50,6 +50,50 @@ export function NewsIndexPage({ lang }: { lang: Lang }) {
   )
 }
 
+const SITE_URL = 'https://dorayama.com'
+
+// structured data so search engines read each item as a news article from the
+// shop (date, headline, photo, publisher) and know where it sits in the site
+function articleJsonLd(item: NewsItem, lang: Lang, title: string, body: string[]) {
+  const url = `${SITE_URL}/${prefix(lang)}news/${item.slug}/`
+  const t = DICT[lang]
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'NewsArticle',
+      headline: title.slice(0, 110),
+      description: body[0],
+      articleBody: body.join('\n'),
+      image: [`${SITE_URL}/${item.image}`],
+      datePublished: `${item.date}T09:00:00+09:00`,
+      dateModified: `${item.date}T09:00:00+09:00`,
+      inLanguage: HTML_LANG[lang],
+      articleSection: t.news.categories[item.category] ?? item.category,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      url,
+      author: { '@type': 'Organization', name: '門仲どらやき どら山 總本鋪', url: `${SITE_URL}/` },
+      publisher: {
+        '@type': 'Organization',
+        name: '門仲どらやき どら山 總本鋪',
+        url: `${SITE_URL}/`,
+        logo: { '@type': 'ImageObject', url: `${SITE_URL}/icon.png` },
+      },
+      about: { '@id': `${SITE_URL}/#shop` },
+      ...(item.media ? { mentions: { '@type': 'Organization', name: item.media.outlet } } : {}),
+      ...(item.instagram ? { sameAs: [item.instagram] } : {}),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: t.nav.intro, item: `${SITE_URL}/${prefix(lang)}` },
+        { '@type': 'ListItem', position: 2, name: t.nav.news, item: `${SITE_URL}/${prefix(lang)}news/` },
+        { '@type': 'ListItem', position: 3, name: title, item: url },
+      ],
+    },
+  ]
+}
+
 // Article after hosa.nagoya news detail: date and title on the left,
 // photo on the right, body text below, and a link back to the list.
 export function NewsDetailPage({ lang, slug }: { lang: Lang; slug: string }) {
@@ -59,6 +103,7 @@ export function NewsDetailPage({ lang, slug }: { lang: Lang; slug: string }) {
   const p = prefix(lang)
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(item, lang, title, body)) }} />
       <SiteHeader lang={lang} />
       <main className="px-4 pb-32 pt-32 md:px-10 md:pb-48 md:pt-44">
         <article className="mx-auto max-w-5xl">
