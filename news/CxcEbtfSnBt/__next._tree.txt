@@ -1,10 +1,10 @@
 :HL["/dorayama-hp/_next/static/chunks/33i4_gwr16mt9.css","style"]
 :HL["/dorayama-hp/_next/static/chunks/2edmspofi2hc-.css","style"]
-:HL["/dorayama-hp/_next/static/chunks/3o-oz805_6ls2.css","style"]
+:HL["/dorayama-hp/_next/static/chunks/0su7xngufz768.css","style"]
 :HL["/dorayama-hp/_next/static/media/6f3ab718e3727c1a-s.p.3huc2loe0ie8a.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap","style"]
 :HL["images/ig/CxcEbtfSnBt.jpg","image"]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"slug","t":"d","k":"CxcEbtfSnBt","s":[]},"h":65632,"c":"$Q3"}]]
 1:[["children",{"s":"news","h":131136,"c":"$Q2"}]]
-0:{"b":"ILL0oSROvJszvnRqM7W7M","t":{"t":{"s":"","h":131088,"c":"$Q1"}}}
+0:{"b":"SAYU1Ca0sZ90y5JF-hsX3","t":{"t":{"s":"","h":131088,"c":"$Q1"}}}
