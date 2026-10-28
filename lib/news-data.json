@@ -182,6 +182,70 @@
   }
  },
  {
+  "slug": "2026-07-super-j-channel",
+  "date": "2026-07",
+  "category": "メディア",
+  "title": "テレビ朝日「スーパーJチャンネル」で紹介されました",
+  "body": [
+   "テレビ朝日「スーパーJチャンネル」の「東京10社巡り」で、門仲どらやき どら山のあんバタどらを取り上げていただきました。",
+   "門前仲町の店先で召し上がっていただき、「おいしい！なにこれ」とのお声をいただきました。ありがとうございました。"
+  ],
+  "image": "images/media/super-j-channel.jpg",
+  "alt": "テレビ朝日「スーパーJチャンネル」でどら山の店先からの紹介",
+  "media": {
+   "outlet": "テレビ朝日「スーパーJチャンネル」",
+   "kind": "テレビ",
+   "date": "2026-07",
+   "summary": "「東京10社巡り」で、あんバタどらを取り上げていただきました。"
+  },
+  "i18n": {
+   "en": {
+    "title": "Featured on TV Asahi's \"Super J Channel\"",
+    "summary": "Our anko butter dora was featured in the \"Tokyo 10 Shrines\" segment of TV Asahi's news programme \"Super J Channel\"."
+   },
+   "zh": {
+    "title": "朝日电视台「Super J Channel」介绍了 Dorayama",
+    "summary": "在朝日电视台新闻节目「Super J Channel」的「东京十社巡礼」单元中，介绍了 Dorayama 的红豆黄油铜锣烧。"
+   },
+   "ko": {
+    "title": "TV 아사히 「슈퍼 J 채널」에 소개되었습니다",
+    "summary": "TV 아사히 「슈퍼 J 채널」의 「도쿄 10사 순례」 코너에서 Dorayama의 앙버터 도라가 소개되었습니다."
+   }
+  }
+ },
+ {
+  "slug": "2026-07-new-japan-branding",
+  "date": "2026-07",
+  "category": "メディア",
+  "title": "書籍「ニュージャパンブランディング」にどら山のデザインが掲載されました",
+  "body": [
+   "パイ インターナショナル刊の書籍「ニュージャパンブランディング」に、どら山のデザインが掲載されました。",
+   "浮世絵・家紋・文様といった日本の文化的な要素を取り入れたブランドとして、のれんや包装、店舗の写真とともにご紹介いただいています。"
+  ],
+  "image": "images/media/new-japan-branding.jpg",
+  "alt": "書籍「ニュージャパンブランディング」のどら山の掲載ページ",
+  "media": {
+   "outlet": "書籍「ニュージャパンブランディング」（パイ インターナショナル）",
+   "kind": "書籍",
+   "date": "2026-07",
+   "summary": "どら山のブランドデザインが掲載されました。"
+  },
+  "i18n": {
+   "en": {
+    "title": "Our design featured in the book \"New Japan Branding\"",
+    "summary": "Dorayama's brand design — noren curtain, packaging and shop — was featured in \"New Japan Branding\", published by PIE International."
+   },
+   "zh": {
+    "title": "Dorayama 的设计刊登于书籍「New Japan Branding」",
+    "summary": "PIE International 出版的书籍「New Japan Branding」刊登了 Dorayama 的品牌设计，包括门帘、包装和店铺。"
+   },
+   "ko": {
+    "title": "서적 「뉴 재팬 브랜딩」에 Dorayama의 디자인이 실렸습니다",
+    "summary": "파이 인터내셔널에서 출간한 「뉴 재팬 브랜딩」에 노렌, 포장, 매장 등 Dorayama의 브랜드 디자인이 소개되었습니다."
+   }
+  }
+ },
+ {
   "slug": "DaMo8wrErH8",
   "date": "2026-06-30",
   "category": "旬どら",
@@ -1544,6 +1608,38 @@
    "ko": {
     "title": "1월 제철 도라야키 '콩가루 떡팥 도라야키'",
     "summary": "1월 제철 도라야키는 달지 않은 팥소에 콩가루를 묻히고 부드러운 규히를 올렸습니다. 1월 2일부터 14일까지 이세탄 신주쿠에서도 출점합니다."
+   }
+  }
+ },
+ {
+  "slug": "2025-01-josei-jishin",
+  "date": "2025-01",
+  "category": "メディア",
+  "title": "「女性自身」でおすすめのどらやきとしてご紹介いただきました",
+  "body": [
+   "雑誌「女性自身」で、おすすめのどらやきとしてどら山をご紹介いただきました。",
+   "黑どら・白どら・あんバターどらを詰め合わせた「どら山便（9個入）」を、銅板で一枚ずつ焼き上げる生地と、北海道十勝産小豆のつぶあんとともに取り上げていただいています。"
+  ],
+  "image": "images/media/josei-jishin.jpg",
+  "alt": "「女性自身」の誌面に掲載されたどら山のどらやき",
+  "media": {
+   "outlet": "女性自身",
+   "kind": "雑誌",
+   "date": "2025-01",
+   "summary": "おすすめのどらやきとして「どら山便（9個入）」をご紹介いただきました。"
+  },
+  "i18n": {
+   "en": {
+    "title": "Featured in the magazine \"Josei Jishin\"",
+    "summary": "The magazine \"Josei Jishin\" introduced Dorayama as a recommended dorayaki, featuring our nine-piece \"Dorayama-bin\" gift set."
+   },
+   "zh": {
+    "title": "杂志「女性自身」推荐了 Dorayama",
+    "summary": "杂志「女性自身」将 Dorayama 作为推荐的铜锣烧进行介绍，刊登了9个装的「Dorayama 便」组合。"
+   },
+   "ko": {
+    "title": "잡지 「조세이지신」에 소개되었습니다",
+    "summary": "잡지 「조세이지신(女性自身)」에서 추천 도라야키로 Dorayama의 「도라야마 편(9개입)」을 소개해 주셨습니다."
    }
   }
  },

@@ -78,7 +78,7 @@ const ja: Dict = {
     lead: ['Featured on television, in magazines', 'and on the web.'],
     intro: 'テレビや雑誌、ウェブメディアでご紹介いただきました。',
     more: '掲載の詳しい内容',
-    kinds: { テレビ: 'テレビ', 雑誌: '雑誌', 新聞: '新聞', ウェブ: 'ウェブ', ラジオ: 'ラジオ', その他: 'その他' },
+    kinds: { テレビ: 'テレビ', 雑誌: '雑誌', 書籍: '書籍', 新聞: '新聞', ウェブ: 'ウェブ', ラジオ: 'ラジオ', その他: 'その他' },
   },
   signature: {
     heading: '門仲どらやき',
@@ -194,7 +194,7 @@ const en: Dict = {
     lead: ['Featured on television, in magazines', 'and on the web.'],
     intro: 'Dorayama has been featured on television, in magazines and in online media.',
     more: 'Read more',
-    kinds: { テレビ: 'TV', 雑誌: 'Magazine', 新聞: 'Newspaper', ウェブ: 'Web', ラジオ: 'Radio', その他: 'Other' },
+    kinds: { テレビ: 'TV', 雑誌: 'Magazine', 書籍: 'Book', 新聞: 'Newspaper', ウェブ: 'Web', ラジオ: 'Radio', その他: 'Other' },
   },
   signature: {
     heading: 'Monnaka Dorayaki',
@@ -310,7 +310,7 @@ const zh: Dict = {
     lead: ['Featured on television, in magazines', 'and on the web.'],
     intro: 'Dorayama 曾受到电视、杂志及网络媒体的介绍。',
     more: '查看详情',
-    kinds: { テレビ: '电视', 雑誌: '杂志', 新聞: '报纸', ウェブ: '网络', ラジオ: '广播', その他: '其他' },
+    kinds: { テレビ: '电视', 雑誌: '杂志', 書籍: '书籍', 新聞: '报纸', ウェブ: '网络', ラジオ: '广播', その他: '其他' },
   },
   signature: {
     heading: '门仲铜锣烧',
@@ -426,7 +426,7 @@ const ko: Dict = {
     lead: ['Featured on television, in magazines', 'and on the web.'],
     intro: 'Dorayama는 TV, 잡지, 웹 미디어에 소개되었습니다.',
     more: '자세히 보기',
-    kinds: { テレビ: 'TV', 雑誌: '잡지', 新聞: '신문', ウェブ: '웹', ラジオ: '라디오', その他: '기타' },
+    kinds: { テレビ: 'TV', 雑誌: '잡지', 書籍: '서적', 新聞: '신문', ウェブ: '웹', ラジオ: '라디오', その他: '기타' },
   },
   signature: {
     heading: '몬나카 도라야키',
