@@ -83,8 +83,11 @@ const SHOP_JSON_LD = {
 // visitors on http are moved over to it
 const HTTPS_UPGRADE = `(function(){var h=location.hostname;if(location.protocol!=='http:'||!/(^|\\.)dorayama\\.com$/.test(h))return;fetch('https://'+h+'/robots.txt',{mode:'no-cors',cache:'no-store'}).then(function(){location.replace('https://'+h+location.pathname+location.search+location.hash)}).catch(function(){})})();`
 
-// analytics only on the real site, not on the GitHub preview copy
-const GA_INIT = `(function(){if(!/(^|\\.)dorayama\\.com$/.test(location.hostname))return;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_ID}';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${GA_ID}');})();`
+// analytics only on the real site, not on the GitHub preview copy.
+// Also counts taps on the order (Take Eats), map, Instagram, mail and phone links
+// as GA4 events (click_order / click_map / click_instagram / click_email / click_tel),
+// so they can be marked as key events and show what visitors go on to do.
+const GA_INIT = `(function(){if(!/(^|\\.)dorayama\\.com$/.test(location.hostname))return;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_ID}';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${GA_ID}');document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href||'',n=h.indexOf('take-eats.jp')>=0?'click_order':/google\\.[a-z.]+\\/maps|maps\\.app\\.goo\\.gl/.test(h)?'click_map':h.indexOf('instagram.com')>=0?'click_instagram':h.indexOf('mailto:')===0?'click_email':h.indexOf('tel:')===0?'click_tel':'';if(n)gtag('event',n,{link_url:h,page_path:location.pathname,transport_type:'beacon'});},true);})();`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
