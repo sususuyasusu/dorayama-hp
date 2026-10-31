@@ -4,4 +4,4 @@
 :HL["https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":64,"c":"$Q2"}]]
-0:{"b":"DaojYu8z1529GLIQWHlPk","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"LEGJnMBP1_HpM-eleHlXa","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
