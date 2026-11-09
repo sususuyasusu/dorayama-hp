@@ -2,6 +2,7 @@
 
 import { type FocusEvent, useEffect, useRef, useState } from 'react'
 import { DICT, type Dict, type Lang } from '@/lib/i18n'
+import { LATEST_SHUN } from '@/lib/news'
 import { RESERVE_URL } from '@/lib/site'
 import { CrossfadeImage } from './crossfade-image'
 import { PillLink } from './pill-link'

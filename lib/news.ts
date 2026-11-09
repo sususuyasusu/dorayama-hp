@@ -17,10 +17,14 @@ export type NewsItem = {
   media?: MediaInfo | null
   instagram?: string
   i18n?: Partial<Record<'en' | 'zh' | 'ko', Translation>>
+  // 旬どらの記事だけ: 何月の旬どらか と 各言語の商品名（トップの商品欄に使う）
+  shun?: { month: number; ja: string; en: string; zh: string; ko: string } | null
 }
 
 export const NEWS = data as NewsItem[]
 export const MEDIA_NEWS = NEWS.filter((n) => n.media)
+// お知らせに載っている旬どらは常に最新の1件だけ（instagram/build_news.py が古い分を外す）
+export const LATEST_SHUN = NEWS.find((n) => n.category === '旬どら')
 export const NEWS_CATEGORIES = ['旬どら', '新商品', '催事・出店', 'メディア', '店舗のお知らせ', '開店までの歩み', 'その他']
 
 // 2026-10-01 -> 2026.10.01

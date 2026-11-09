@@ -12,7 +12,23 @@
     "販売期間：2026年11月1日〜11月30日"
   ],
   "media": null,
-  "en": {"title": "November Seasonal Dorayaki: Fig and Black Tea Dorayaki", "summary": "Our November seasonal dorayaki pairs additive-free figs simmered in grape juice with bergamot-scented black tea white bean paste and chopped almonds. 460 yen, on sale November 1-30, 2026."},
-  "zh": {"title": "11月当季铜锣烧「无花果红茶铜锣烧」", "summary": "11月的当季铜锣烧将用葡萄汁煮制的无添加无花果，搭配带有佛手柑香气的红茶白豆沙和碎杏仁。460日元，销售期间为2026年11月1日至11月30日。"},
-  "ko": {"title": "11월 제철 도라야키 '무화과 홍차 도라야키'", "summary": "11월의 제철 도라야키는 포도 과즙에 졸인 무첨가 무화과와 베르가못 향의 홍차 흰 앙금, 다진 아몬드를 함께 담았습니다. 가격은 460엔, 판매 기간은 2026년 11월 1일부터 30일까지입니다."}
+  "en": {
+    "title": "November Seasonal Dorayaki: Fig and Black Tea Dorayaki",
+    "summary": "Our November seasonal dorayaki pairs additive-free figs simmered in grape juice with bergamot-scented black tea white bean paste and chopped almonds. 460 yen, on sale November 1-30, 2026."
+  },
+  "zh": {
+    "title": "11月当季铜锣烧「无花果红茶铜锣烧」",
+    "summary": "11月的当季铜锣烧将用葡萄汁煮制的无添加无花果，搭配带有佛手柑香气的红茶白豆沙和碎杏仁。460日元，销售期间为2026年11月1日至11月30日。"
+  },
+  "ko": {
+    "title": "11월 제철 도라야키 '무화과 홍차 도라야키'",
+    "summary": "11월의 제철 도라야키는 포도 과즙에 졸인 무첨가 무화과와 베르가못 향의 홍차 흰 앙금, 다진 아몬드를 함께 담았습니다. 가격은 460엔, 판매 기간은 2026년 11월 1일부터 30일까지입니다."
+  },
+  "shun": {
+    "month": 11,
+    "ja": "無花果の紅茶どら",
+    "en": "Fig and Black Tea Dorayaki",
+    "zh": "无花果红茶铜锣烧",
+    "ko": "무화과 홍차 도라야키"
+  }
 }
