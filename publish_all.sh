@@ -4,6 +4,17 @@
 # 使い方: publish_all.sh "変更の説明"
 set -e
 cd ~/dorayama-hp
+# 同時に2つの公開が走ると途中の変更が混ざるため、順番待ちにする（2026-11-09 実際に混ざった）
+LOCK=~/dorayama-hp/.publish.lock
+for i in {1..120}; do
+  mkdir $LOCK 2>/dev/null && break
+  # 2時間以上前の鍵は前回の異常終了の残り物として外す
+  [[ -n $(find $LOCK -maxdepth 0 -mmin +120 2>/dev/null) ]] && rmdir $LOCK && continue
+  (( i == 1 )) && echo "他の公開が終わるのを待っています"
+  sleep 15
+done
+[[ -d $LOCK ]] || { echo "公開の順番待ちが30分を超えたので中止"; exit 1; }
+trap 'rmdir $LOCK 2>/dev/null' EXIT
 python3 instagram/download_images.py
 python3 instagram/build_news.py
 python3 instagram/check_items.py | sed -n '1,3p'

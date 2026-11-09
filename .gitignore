@@ -22,3 +22,5 @@ out_root/
 bundle_last.txt
 .sync_secret
 .deploy/
+instagram/.work/
+.publish.lock/
