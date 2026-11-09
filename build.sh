@@ -15,3 +15,4 @@ for try in 1 2 3 4 5; do
   sleep 5
 done
 test -f out/index.html && echo "組み立て成功"
+python3 retire_pages.py out

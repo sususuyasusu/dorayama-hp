@@ -22,9 +22,30 @@ type Product = {
 const PRICES: (string | undefined)[] = ['299', '320', '420', '450', '480', '450〜', '430', undefined]
 const IMAGES = ['images/40.jpg', 'images/41.jpg', 'images/42.jpg', 'images/43.jpg', 'images/44.jpg', 'images/14.jpg', 'images/53.jpg', 'images/51.jpg']
 
+// 旬どらの欄は、お知らせに載っている最新の旬どら（shun 情報つき）から自動で作る。
+// 旬どらのお知らせが更新されると、ここの説明・写真も一緒に切り替わる。
+const SHUN_INDEX = 5
+const MONTH_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+function shunText(lang: Lang): { description: string; alt: string; image: string } | null {
+  const s = LATEST_SHUN?.shun
+  if (!LATEST_SHUN || !s) return null
+  const m = s.month
+  const image = LATEST_SHUN.image
+  if (lang === 'en') {
+    const mn = MONTH_EN[m - 1]
+    return { description: `A seasonal dorayaki that changes every month. ${mn}’s is the “${s.en}”. Each month’s flavour is announced in our news and on Instagram.`, alt: `${mn}’s shun-dora, ${s.en}`, image }
+  }
+  if (lang === 'zh') return { description: `每月更换口味的季节铜锣烧。${m}月为「${s.zh}」。每月口味会在新闻与 Instagram 公布。`, alt: `${m}月限定的${s.zh}`, image }
+  if (lang === 'ko') return { description: `매달 바뀌는 계절 도라야키. ${m}월은 「${s.ko}」입니다. 매달의 맛은 소식과 Instagram에서 안내합니다.`, alt: `${m}월의 ${s.ko}`, image }
+  return { description: `毎月入れ替わる、季節のどらやき。${m}月は「${s.ja}」です。月ごとの味はお知らせとInstagramでご案内します。`, alt: `${m}月の旬どら、${s.ja}`, image }
+}
+
 export function ProductsSection({ lang = 'ja' }: { lang?: Lang }) {
   const t = DICT[lang].products
-  const PRODUCTS: Product[] = t.items.map((p, i) => ({ ...p, price: PRICES[i], image: IMAGES[i] }))
+  const shun = shunText(lang)
+  const PRODUCTS: Product[] = t.items.map((p, i) =>
+    i === SHUN_INDEX && shun ? { ...p, ...shun, price: PRICES[i] } : { ...p, price: PRICES[i], image: IMAGES[i] },
+  )
   const sectionRef = useRef<HTMLDivElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
