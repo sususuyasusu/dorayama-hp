@@ -24,3 +24,7 @@ bundle_last.txt
 .deploy/
 instagram/.work/
 .publish.lock/
+
+# アクセス解析の生データ・プロフィール情報（公開の保管庫に載せない・2026-11-14）
+analytics/
+tsconfig.tsbuildinfo

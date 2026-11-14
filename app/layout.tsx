@@ -55,7 +55,8 @@ const SHOP_JSON_LD = {
   url: `${SITE_URL}/`,
   image: [`${SITE_URL}/images/70.jpg`, `${SITE_URL}/images/71.jpg`, `${SITE_URL}/images/72.jpg`],
   logo: `${SITE_URL}/images/logo-full.png`,
-  email: 'info@dorayama.com',
+  // メールアドレスは載せない（迷惑メールの収集を避けるため。お問い合わせはフォームへ・2026-11-14）
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', url: `${SITE_URL}/#contact`, availableLanguage: ['ja', 'en', 'zh', 'ko'] },
   servesCuisine: '和菓子（どらやき）',
   priceRange: '¥',
   address: {

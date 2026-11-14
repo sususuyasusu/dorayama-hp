@@ -4,6 +4,9 @@ import { PillLink } from './pill-link'
 import { Reveal } from './reveal'
 import { SectionHeading } from './section-heading'
 import { ShopMap } from './shop-map'
+import { ContactForm } from './contact-form'
+
+const TO_FORM: Record<Lang, string> = { ja: 'お問い合わせフォームへ', en: 'Contact form', zh: '联系表单', ko: '문의 양식' }
 
 const ADDRESS: Record<Lang, string> = {
   ja: '東京都江東区門前仲町2丁目6-9 ひいらぎビル1F',
@@ -25,8 +28,8 @@ export function AccessSection({ lang = 'ja' }: { lang?: Lang }) {
     [t.rows.payment, t.values.payment],
     [
       t.rows.contact,
-      <a key="mail" href="mailto:info@dorayama.com" className="underline decoration-paper/30 underline-offset-4 transition-colors hover:decoration-copper">
-        info@dorayama.com
+      <a key="form" href="#contact" className="underline decoration-paper/30 underline-offset-4 transition-colors hover:decoration-copper">
+        {TO_FORM[lang]}
       </a>,
     ],
   ]
@@ -75,6 +78,8 @@ export function AccessSection({ lang = 'ja' }: { lang?: Lang }) {
             </a>
           </Reveal>
         </div>
+
+        <ContactForm lang={lang} />
       </div>
     </section>
   )
