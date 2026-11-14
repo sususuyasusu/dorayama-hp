@@ -24,4 +24,6 @@ if ($method === 'POST') {
   $_POST = $post;
   $_SERVER['CONTENT_LENGTH'] = (string)strlen(http_build_query($post));
 }
+// メールは絶対に送らない（2026-11-14 この試験台から実際に7通が送られてしまった）
+putenv('CONTACT_DRY_RUN=1');
 include __DIR__ . '/../public/api/contact.php';

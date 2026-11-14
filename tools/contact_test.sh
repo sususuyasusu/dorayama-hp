@@ -21,7 +21,7 @@ check "よそのサイトからは断る" "$(run POST https://evil.example "$OK"
 check "罠の欄が埋まっていたら何もせず受付済みのふり" "$(run POST $O '{"website":"http://spam","ticket":"x"}')" '{"ok":true}'
 check "表示から3秒未満の送信は断る" "$(run POST $O "$OK" 0)" '"error":"ticket"'
 check "古すぎる受付票は断る" "$(run POST $O "$OK" 9000)" '"error":"ticket"'
-check "正しい送信は受け付ける" "$(run POST $O "$OK" 10)" '"no":"'
+check "正しい送信は受け付ける（試験なのでメールは送らない）" "$(run POST $O "$OK" 10)" '"dry_run":true'
 check "同じ受付票は二度使えない" "$(run POST $O "${OK/MAKE/LAST}")" '"error":"ticket"'
 check "メールの見出しを書き換える細工は断る" "$(run POST $O '{"kind":"order","name":"x","email":"a@example.com\r\nBcc: victim@example.com","message":"hello hello","agree":"1","ticket":"MAKE"}' 10)" '"email"'
 check "決まっていない種類は断る" "$(run POST $O '{"kind":"<script>","name":"x","email":"a@example.com","message":"hello hello","agree":"1","ticket":"MAKE"}' 10)" '"kind"'
