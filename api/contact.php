@@ -200,6 +200,9 @@ $subject = '【どら山HP】お問い合わせ（' . KINDS[$kind] . '）' . $no
 $headers = 'From: ' . mb_encode_mimeheader('どら山 公式サイト') . ' <' . FROM_ADDR . ">\r\n"
          . 'Reply-To: ' . $email . "\r\n"
          . "X-Mailer: dorayama-contact\r\n";
+// 試験のときは送らない（試験台が CONTACT_DRY_RUN=1 を立てる。本番では立たない）
+// 2026-11-14 手元の試験で実際に7通が店のメールへ届いてしまったための止め
+if (getenv('CONTACT_DRY_RUN') === '1') { reply(200, ['ok' => true, 'no' => $no, 'dry_run' => true]); }
 $sent = @mb_send_mail(TO_ADDR, $subject, $body, $headers, '-f' . FROM_ADDR);
 if (!$sent) {
   @file_put_contents($dir . '/failed.log', date('c') . " {$no}\n", FILE_APPEND | LOCK_EX);
