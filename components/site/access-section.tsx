@@ -1,10 +1,9 @@
-import { DICT, type Lang } from '@/lib/i18n'
+import { DICT, prefix, type Lang } from '@/lib/i18n'
 import { INSTAGRAM_URL, RESERVE_URL } from '@/lib/site'
 import { PillLink } from './pill-link'
 import { Reveal } from './reveal'
 import { SectionHeading } from './section-heading'
 import { ShopMap } from './shop-map'
-import { ContactForm } from './contact-form'
 
 const TO_FORM: Record<Lang, string> = { ja: 'お問い合わせフォームへ', en: 'Contact form', zh: '联系表单', ko: '문의 양식' }
 
@@ -28,7 +27,7 @@ export function AccessSection({ lang = 'ja' }: { lang?: Lang }) {
     [t.rows.payment, t.values.payment],
     [
       t.rows.contact,
-      <a key="form" href="#contact" className="underline decoration-paper/30 underline-offset-4 transition-colors hover:decoration-copper">
+      <a key="form" href={`${prefix(lang)}contact/`} className="underline decoration-paper/30 underline-offset-4 transition-colors hover:decoration-copper">
         {TO_FORM[lang]}
       </a>,
     ],
@@ -79,7 +78,6 @@ export function AccessSection({ lang = 'ja' }: { lang?: Lang }) {
           </Reveal>
         </div>
 
-        <ContactForm lang={lang} />
       </div>
     </section>
   )

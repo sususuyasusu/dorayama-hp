@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...page('', 1, 'weekly', now),
     ...page('news/', 0.7, 'weekly', now),
+    ...page('contact/', 0.4, 'monthly', now),
     ...NEWS.flatMap((n) => page(`news/${n.slug}/`, 0.5, 'monthly', new Date(n.date))),
   ]
 }

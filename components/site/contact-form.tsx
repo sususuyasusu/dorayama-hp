@@ -160,7 +160,7 @@ const T: Record<Lang, Text> = {
 
 const field = 'w-full rounded-none border border-paper/25 bg-transparent px-4 py-3 text-[14px] tracking-[0.06em] text-paper placeholder:text-paper/35 transition-colors focus:border-paper/70 focus:outline-none'
 
-export function ContactForm({ lang = 'ja' }: { lang?: Lang }) {
+export function ContactForm({ lang = 'ja', standalone = false }: { lang?: Lang; standalone?: boolean }) {
   const t = T[lang]
   const [ticket, setTicket] = useState('')
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'off'>('idle')
@@ -212,9 +212,9 @@ export function ContactForm({ lang = 'ja' }: { lang?: Lang }) {
   )
 
   return (
-    <div id="contact" className="mt-24 max-w-3xl scroll-mt-28 border-t border-paper/10 pt-16">
-      <h3 className="font-mincho text-[20px] tracking-[0.2em] text-paper md:text-[22px]">{t.heading}</h3>
-      <p className="mt-6 font-mincho text-[14px] leading-[2.1] tracking-[0.08em] text-mute">{t.lead}</p>
+    <div id="contact" className={cn('max-w-3xl scroll-mt-28', standalone ? 'mt-16' : 'mt-24 border-t border-paper/10 pt-16')}>
+      {!standalone && <h3 className="font-mincho text-[20px] tracking-[0.2em] text-paper md:text-[22px]">{t.heading}</h3>}
+      <p className={cn('font-mincho text-[14px] leading-[2.1] tracking-[0.08em] text-mute', !standalone && 'mt-6')}>{t.lead}</p>
 
       {state === 'done' ? (
         <p role="status" className="mt-10 border border-paper/25 px-6 py-6 text-[14px] leading-loose tracking-[0.06em] text-paper">
