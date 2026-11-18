@@ -1,6 +1,7 @@
 import type { Lang } from '@/lib/i18n'
 import { AccessSection } from './access-section'
 import { ConceptSection } from './concept-section'
+import { EventBanner } from './event-banner'
 import { IntroSection } from './intro-section'
 import { MediaSection } from './media-section'
 import { NewsSection } from './news-section'
@@ -18,6 +19,7 @@ export function Home({ lang }: { lang: Lang }) {
       <main>
         <IntroSection lang={lang} />
         <div className="relative z-10">
+          <EventBanner lang={lang} />
           <NewsSection lang={lang} />
         </div>
         <MediaSection lang={lang} />

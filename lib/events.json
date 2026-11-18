@@ -1,0 +1,13 @@
+[
+  {
+    "id": "ecute-ueno-2026",
+    "start": "2026-10-01",
+    "end": "2027-04-04",
+    "note_internal": "終了日は3/28か4/4で先方回答待ち（2026-11-17返信）。決まったら end と period を直す。",
+    "map": "https://www.google.com/maps/search/?api=1&query=%E3%82%A8%E3%82%AD%E3%83%A5%E3%83%BC%E3%83%88%E4%B8%8A%E9%87%8E",
+    "ja": { "name": "エキュート上野", "place": "JR上野駅 改札内", "period": "2027年春まで（予定）", "note": "駅の改札内にあるため、電車をご利用でない方は入場券でお入りください。" },
+    "en": { "name": "ecute Ueno", "place": "Inside the ticket gates, JR Ueno Station", "period": "Until spring 2027 (planned)", "note": "The shop is inside the station gates. If you are not travelling by train, please enter with a platform ticket." },
+    "zh": { "name": "ecute上野", "place": "JR上野站 检票口内", "period": "预计至2027年春", "note": "店铺位于车站检票口内，不乘车的顾客请购买站台票入场。" },
+    "ko": { "name": "에큐트 우에노", "place": "JR 우에노역 개찰구 안", "period": "2027년 봄까지 (예정)", "note": "역 개찰구 안에 있으므로, 열차를 이용하지 않는 분은 입장권으로 들어와 주세요." }
+  }
+]
