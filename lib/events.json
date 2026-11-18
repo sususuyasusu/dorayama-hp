@@ -1,6 +1,7 @@
 [
   {
     "id": "ecute-ueno-2026",
+    "show": "2026-10-01",
     "start": "2026-10-01",
     "end": "2027-04-04",
     "note_internal": "終了日は3/28か4/4で先方回答待ち（2026-11-17返信）。決まったら end と period を直す。",
@@ -9,5 +10,17 @@
     "en": { "name": "ecute Ueno", "place": "Inside the ticket gates, JR Ueno Station", "period": "Until spring 2027 (planned)", "note": "The shop is inside the station gates. If you are not travelling by train, please enter with a platform ticket." },
     "zh": { "name": "ecute上野", "place": "JR上野站 检票口内", "period": "预计至2027年春", "note": "店铺位于车站检票口内，不乘车的顾客请购买站台票入场。" },
     "ko": { "name": "에큐트 우에노", "place": "JR 우에노역 개찰구 안", "period": "2027년 봄까지 (예정)", "note": "역 개찰구 안에 있으므로, 열차를 이용하지 않는 분은 입장권으로 들어와 주세요." }
+  },
+  {
+    "id": "isetan-shinjuku-2027-01",
+    "show": "2026-12-20",
+    "start": "2027-01-20",
+    "end": "2027-01-26",
+    "note_internal": "本人指示（2026-11-18）: 1か月前から掲載。会期は「どら山 催事」カレンダーより。",
+    "map": "https://www.google.com/maps/search/?api=1&query=%E4%BC%8A%E5%8B%A2%E4%B8%B9%E6%96%B0%E5%AE%BF%E5%BA%97",
+    "ja": { "name": "伊勢丹新宿店", "place": "和菓子催事", "period": "2027年1月20日（水）〜1月26日（火）", "note": "" },
+    "en": { "name": "Isetan Shinjuku", "place": "Wagashi fair", "period": "Wed 20 – Tue 26 January 2027", "note": "" },
+    "zh": { "name": "伊势丹新宿店", "place": "和果子展销会", "period": "2027年1月20日（周三）至1月26日（周二）", "note": "" },
+    "ko": { "name": "이세탄 신주쿠점", "place": "화과자 행사", "period": "2027년 1월 20일(수) ~ 1월 26일(화)", "note": "" }
   }
 ]
